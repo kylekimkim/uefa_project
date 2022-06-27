@@ -1,0 +1,5 @@
+package com.uefa.vo;
+
+public class TeamVo {
+
+}
