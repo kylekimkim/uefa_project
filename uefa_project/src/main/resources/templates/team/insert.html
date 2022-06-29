@@ -1,0 +1,41 @@
+<html lang="en" xmlns:th="http:/www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+	</head>
+	
+	<body>
+		<div class="container">
+			<header th:insert="header_nav.html"></header>
+			<h1>팀 추가</h1>
+			<form th:action="@{insert}" method="post" name="insert">
+				<p class="input-group">
+				  <label class="input-group-text">팀 번호</label>
+				  <input name="teamNum" type="number" class="form-control" placeholder="팀 번호 입력" value="" >
+				</p>
+			  	<p class="input-group">
+				  <label class="input-group-text">팀 이름</label>
+				  <input name="teamName" type="text" class="form-control" placeholder="팀 이름 입력">
+				</p>
+				<p class="input-group">
+				  <label for="menuFormPrice" class="input-group-text">팀 로고 사진</label>
+				  <input name="logoImage" type="text" class="form-control" >
+				</p>
+				<p class="input-group">
+					  <label for="teamModifyFormteamLeague" class="input-group-text">소속 리그</label>
+					  <select name="leagueNum" class="form-control" id="teamModifyFormteamLeague">
+					  	<option value="1">프리미어리그</option>
+					  	<option value="2">라리가</option>
+					  	<option value="3">분데스리가</option>
+					  	<option value="4">세리에 A</option>
+					  	<option value="5">리그 앙</option>
+					  </select>
+					</p>
+				
+			  	<p class="d-grid gap-2 d-md-flex justify-content-md-end">
+			  		<button class="btn btn-outline-warning" type="reset">리셋</button>
+			  		<button class="btn btn-outline-primary" type="submit">등록</button>
+			  	</p>
+	  		</form>
+		</div>
+	</body>
+</html>

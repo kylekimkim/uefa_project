@@ -4,40 +4,41 @@
 	</head>
 	
 	<body>
-		<header th:insert="header_nav.html"></header>
-		<h1>Team 리스트 </h1>
+		<div class="container">
+			<header th:insert="header_nav.html"></header>
+			<h1>Team 리스트 </h1>
+			<button class="btn btn-primary" type="submit" onclick="location.href='/team/insert'">팀 추가</button>
+			<table class="table">
+				<thead>
+					<th>Num</th><th>팀 이름</th><th>팀 로고</th><th>경기 수</th><th>승</th><th>무</th><th>패</th><th>승점</th><th>팀 관리</th>			
+				</thead>
+				<tbody>
+					<tr th:each="team:${teamList}">
+						<td th:text="${team.teamNum}"></td>
+						<td th:text="${team.teamName}"></td>
+						<td th:text="${team.logoImage}"></td>
+						<td th:text="${team.matchCount}"></td>
+						<td th:text="${team.win}"></td>
+						<td th:text="${team.tie}"></td>
+						<td th:text="${team.defeat}"></td>
+						<td th:text="${team.victoryPoints}"></td>
+						<td><a th:href="@{/team/modify(teamNum=${team.teamNum})}">수정</a></td>
+					</tr>
+				</tbody>
+			</table>	
 			
-		<table class="table">
-			<thead>
-				<th>Num</th><th>팀 이름</th><th>소속 리그</th><th>팀 로고</th><th>경기 수</th><th>승</th><th>무</th><th>패</th><th>승점</th>			
-			</thead>
-			<tbody>
-				<tr th:each="team:${teamList}">
-					<td th:text="${team.teamNum}"></td>
-					<td th:text="${team.teamName}"></td>
-					<td th:text="${team.league}"></td>
-					<td th:text="${team.logoImage}"></td>
-					<td th:text="${team.matchCount}"></td>
-					<td th:text="${team.win}"></td>
-					<td th:text="${team.tie}"></td>
-					<td th:text="${team.defeat}"></td>
-					<td th:text="${team.victoryPoints}"></td>
-				</tr>
-			</tbody>
-		</table>	
-		
-		
-		<div th:with="	totalPages=${teamList.totalPages}, 
-						nowPage=${teamList.number+1}, 
-						hasNext=${teamList.hasNext}, 
-						hasPrev=${teamList.hasPrevious},
-						startPage=${((nowPage-3)<=0)?1:nowPage-3},
-						endPage=${((nowPage+3)>=totalPages)?totalPages:nowPage+3
-						
-						}
-						">
-			<nav th:insert="/pagination.html"></nav>					
+			
+			<div th:with="	totalPages=${teamList.totalPages}, 
+							nowPage=${teamList.number+1}, 
+							hasNext=${teamList.hasNext}, 
+							hasPrev=${teamList.hasPrevious},
+							startPage=${((nowPage-3)<=0)?1:nowPage-3},
+							endPage=${((nowPage+3)>=totalPages)?totalPages:nowPage+3
+							
+							}
+							">
+				<nav th:insert="/pagination.html"></nav>					
+			</div>
 		</div>
-
 	</body>
 </html>

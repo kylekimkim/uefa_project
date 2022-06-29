@@ -13,7 +13,8 @@ public class TeamVo {
 	private Integer teamNum;
 	@Column(name="team_name")
 	private String teamName;
-	private String league;
+	@Column(name="league_num")
+	private Integer leagueNum;
 	@Column(name="logo_image")
 	private String logoImage;
 	@Column(name="match_count")
@@ -36,11 +37,11 @@ public class TeamVo {
 	public void setTeamName(String teamName) {
 		this.teamName = teamName;
 	}
-	public String getLeague() {
-		return league;
+	public Integer getLeagueNum() {
+		return leagueNum;
 	}
-	public void setLeague(String league) {
-		this.league = league;
+	public void setLeagueNum(Integer leagueNum) {
+		this.leagueNum = leagueNum;
 	}
 	public String getLogoImage() {
 		return logoImage;
@@ -80,7 +81,7 @@ public class TeamVo {
 	}
 	@Override
 	public String toString() {
-		return "TeamVo [teamNum=" + teamNum + ", teamName=" + teamName + ", league=" + league + ", logoImage="
+		return "TeamVo [teamNum=" + teamNum + ", teamName=" + teamName + ", leagueNum=" + leagueNum + ", logoImage="
 				+ logoImage + ", matchCount=" + matchCount + ", win=" + win + ", tie=" + tie + ", defeat=" + defeat
 				+ ", victoryPoints=" + victoryPoints + "]";
 	}
