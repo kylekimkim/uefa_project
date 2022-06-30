@@ -29,24 +29,13 @@ public class TeamController {
 	@Autowired
 	TeamRepository tr;
 		
-	@GetMapping("/list/{page}")
-	public String pageableList( @PathVariable int page,
-								@RequestParam(defaultValue = "teamNum") String sort,
-								@RequestParam(defaultValue = "asc") String desc ,
-								Model model) {
-		int size=10;
-		Pageable pageable=null;
-		if(desc.equals("desc")) {
-			pageable=PageRequest.of(page-1, size, Sort.by(sort).descending());			
-		}else if(desc.equals("asc")) {
-			pageable=PageRequest.of(page-1, size, Sort.by(sort).ascending()); 		
-		}
-
-		
-		Page<TeamVo> teamList=tr.findAll(pageable);
-		
-		
-		model.addAttribute("teamList", teamList);
+	@GetMapping("/list.do")
+	public String list(Model model) {	
+		model.addAttribute("eplList", tr.eplByOrderByVictoryPointsDesc(1));
+		model.addAttribute("laligaList", tr.laligaByOrderByVictoryPointsDesc(2));
+		model.addAttribute("bundesList", tr.bundesByOrderByVictoryPointsDesc(3));
+		model.addAttribute("serieList", tr.serieByOrderByVictoryPointsDesc(4));
+		model.addAttribute("angList", tr.angByOrderByVictoryPointsDesc(5));
 		return "/team/list";
 	}
 	
@@ -72,26 +61,33 @@ public class TeamController {
 		return model;
 	}
 	@PostMapping("/update")
-	public String insert(TeamVo teamVo, HttpSession session) {
+	public String update(TeamVo teamVo, HttpSession session) {
 		boolean update=false;
-		try {
-				
+		try {	
 				TeamVo updateTeam=tr.save(teamVo);
 				if(updateTeam!=null) {
 					update=true;
-				}else {
-					session.setAttribute("msg", "이미 존재하는 이름 입니다.");
 				}	
-			
 		}catch(Exception e){
 			e.printStackTrace();
-			session.setAttribute("msg", "추가에 실패하였습니다.");
 		}
 		if(update) {
-			return "redirect:/";			
+			return "redirect:/team/list.do";			
 		}else {
 			return "redirect:/team/modify";
 		}
 		
 	}
+	/*
+	 * @PostMapping("/insert") public String insert(TeamVo teamVo, HttpSession
+	 * session) { boolean insert=false; try { Optional<TeamVo>
+	 * teamOption=tr.findById(teamVo.getTeamNum()); // 기본으로 제공되는 함수
+	 * if(teamOption.isEmpty()) { TeamVo insertTeam=tr.save(teamVo);
+	 * if(insertTeam!=null) { insert=true; } } }catch(Exception e){
+	 * e.printStackTrace(); session.setAttribute("msg", "팀이 이미 존재합니다."); }
+	 * if(insert) { return "redirect:/team/list"; }else { return
+	 * "redirect:/team/insert"; }
+	 * 
+	 * }
+	 */
 }

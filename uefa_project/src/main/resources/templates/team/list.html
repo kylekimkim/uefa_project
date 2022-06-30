@@ -6,39 +6,128 @@
 	<body>
 		<div class="container">
 			<header th:insert="header_nav.html"></header>
-			<h1>Team 리스트 </h1>
-			<button class="btn btn-primary" type="submit" onclick="location.href='/team/insert'">팀 추가</button>
-			<table class="table">
-				<thead>
-					<th>Num</th><th>팀 이름</th><th>팀 로고</th><th>경기 수</th><th>승</th><th>무</th><th>패</th><th>승점</th><th>팀 관리</th>			
-				</thead>
-				<tbody>
-					<tr th:each="team:${teamList}">
-						<td th:text="${team.teamNum}"></td>
-						<td th:text="${team.teamName}"></td>
-						<td th:text="${team.logoImage}"></td>
-						<td th:text="${team.matchCount}"></td>
-						<td th:text="${team.win}"></td>
-						<td th:text="${team.tie}"></td>
-						<td th:text="${team.defeat}"></td>
-						<td th:text="${team.victoryPoints}"></td>
-						<td><a th:href="@{/team/modify(teamNum=${team.teamNum})}">수정</a></td>
-					</tr>
-				</tbody>
-			</table>	
-			
-			
-			<div th:with="	totalPages=${teamList.totalPages}, 
-							nowPage=${teamList.number+1}, 
-							hasNext=${teamList.hasNext}, 
-							hasPrev=${teamList.hasPrevious},
-							startPage=${((nowPage-3)<=0)?1:nowPage-3},
-							endPage=${((nowPage+3)>=totalPages)?totalPages:nowPage+3
-							
-							}
-							">
-				<nav th:insert="/pagination.html"></nav>					
-			</div>
+			<h1>Team 순위 관리 </h1>
+			<!--<button class="btn btn-primary" type="submit" onclick="location.href='/team/insert'">팀 추가</button>-->
+			<nav>
+				<div class="nav nav-pills nav-justified" id="nav-tab" role="tablist">
+				    <button class="nav-link active" id="uk-list-tab" data-bs-toggle="tab" data-bs-target="#uk-list" type="button" role="tab" aria-controls="uk-list" aria-selected="true"> 프리미어리그</button>
+				    <button class="nav-link" id="spain-list-tab" data-bs-toggle="tab" data-bs-target="#spain-list" type="button" role="tab" aria-controls="spain-list" aria-selected="false">라리가</button>
+				    <button class="nav-link" id="italia-list-tab" data-bs-toggle="tab" data-bs-target="#italia-list" type="button" role="tab" aria-controls="italia-list" aria-selected="false">세리에 A</button>
+				    <button class="nav-link" id="france-list-tab" data-bs-toggle="tab" data-bs-target="#france-list" type="button" role="tab" aria-controls="france-list" aria-selected="false">리그 앙</button>
+				  	<button class="nav-link" id="germany-list-tab" data-bs-toggle="tab" data-bs-target="#germany-list" type="button" role="tab" aria-controls="germany-list" aria-selected="false">분데스리가</button>
+			  	</div>
+			</nav>
+			<div class="tab-content" id="nav-tabContent">
+			  <div class="tab-pane fade show active" id="uk-list" role="tabpanel" aria-labelledby="nav-home-tab">
+			  	<table class="table">
+					<thead>
+						<th>순위</th><th>팀</th><th>경기 수</th><th>승점</th><th>승</th><th>무</th><th>패</th>	<th>팀 관리</th>		
+					</thead>
+					<tbody>
+						<tr th:each="epl:${eplList}">	
+							<td class="rank"></td>
+							<td th:text="${epl.teamName}"></td>
+							<td th:text="${epl.matchCount}"></td>
+							<td th:text="${epl.victoryPoints}"></td>
+							<td th:text="${epl.win}"></td>
+							<td th:text="${epl.tie}"></td>
+							<td th:text="${epl.defeat}"></td>	
+							<td><a th:href="@{/team/modify(teamNum=${epl.teamNum})}">수정</a></td>		
+						</tr>
+					</tbody>
+				</table>	
+			  </div>
+			  <div class="tab-pane fade" id="spain-list" role="tabpanel" aria-labelledby="nav-home-tab"> 
+			  	<table class="table">
+					<thead>
+						<th>순위</th><th>팀</th><th>경기 수</th><th>승점</th><th>승</th><th>무</th><th>패</th>	<th>팀 관리</th>		
+					</thead>
+					<tbody>
+						<tr th:each="laliga:${laligaList}">	
+							<td class="rank"></td>
+							<td th:text="${laliga.teamName}"></td>
+							<td th:text="${laliga.matchCount}"></td>
+							<td th:text="${laliga.victoryPoints}"></td>
+							<td th:text="${laliga.win}"></td>
+							<td th:text="${laliga.tie}"></td>
+							<td th:text="${laliga.defeat}"></td>	
+							<td><a th:href="@{/team/modify(teamNum=${laliga.teamNum})}">수정</a></td>		
+						</tr>
+					</tbody>
+				</table>	
+			  </div>
+			   <div class="tab-pane fade" id="italia-list" role="tabpanel" aria-labelledby="nav-home-tab"> 
+			  	<table class="table">
+					<thead>
+						<th>순위</th><th>팀</th><th>경기 수</th><th>승점</th><th>승</th><th>무</th><th>패</th>	<th>팀 관리</th>		
+					</thead>
+					<tbody>
+						<tr th:each="serie:${serieList}">	
+							<td class="rank"></td>
+							<td th:text="${serie.teamName}"></td>
+							<td th:text="${serie.matchCount}"></td>
+							<td th:text="${serie.victoryPoints}"></td>
+							<td th:text="${serie.win}"></td>
+							<td th:text="${serie.tie}"></td>
+							<td th:text="${serie.defeat}"></td>	
+							<td><a th:href="@{/team/modify(teamNum=${serie.teamNum})}">수정</a></td>		
+						</tr>
+					</tbody>
+				</table>
+			  </div>
+			   <div class="tab-pane fade" id="france-list" role="tabpanel" aria-labelledby="nav-home-tab"> 
+			  	<table class="table">
+					<thead>
+						<th>순위</th><th>팀</th><th>경기 수</th><th>승점</th><th>승</th><th>무</th><th>패</th>	<th>팀 관리</th>		
+					</thead>
+					<tbody>
+						<tr th:each="ang:${angList}">	
+							<td class="rank"></td>
+							<td th:text="${ang.teamName}"></td>
+							<td th:text="${ang.matchCount}"></td>
+							<td th:text="${ang.victoryPoints}"></td>
+							<td th:text="${ang.win}"></td>
+							<td th:text="${ang.tie}"></td>
+							<td th:text="${ang.defeat}"></td>	
+							<td><a th:href="@{/team/modify(teamNum=${ang.teamNum})}">수정</a></td>		
+						</tr>
+					</tbody>
+				</table>
+			  </div>
+			  <div class="tab-pane fade" id="germany-list" role="tabpanel" aria-labelledby="nav-home-tab"> 
+			  	<table class="table">
+					<thead>
+						<th>순위</th><th>팀</th><th>경기 수</th><th>승점</th><th>승</th><th>무</th><th>패</th>	<th>팀 관리</th>		
+					</thead>
+					<tbody>
+						<tr th:each="bundes:${bundesList}">	
+							<td class="rank"></td>
+							<td th:text="${bundes.teamName}"></td>
+							<td th:text="${bundes.matchCount}"></td>
+							<td th:text="${bundes.victoryPoints}"></td>
+							<td th:text="${bundes.win}"></td>
+							<td th:text="${bundes.tie}"></td>
+							<td th:text="${bundes.defeat}"></td>
+							<td><a th:href="@{/team/modify(teamNum=${bundes.teamNum})}">수정</a></td>			
+						</tr>
+					</tbody>
+				</table>
+			  </div>
+			</div>	
 		</div>
+		<script>
+		function ranking(start){
+			var start= start;
+			var td_list= document.getElementsByClassName("rank");
+			for(var i=0; i<td_list.length; i++){
+				start++;
+				td_list[i].innerHTML="&nbsp"+start;
+				if(start==20){
+					start=0;
+				}
+			}
+		};
+		ranking(0);
+	</script>
 	</body>
 </html>

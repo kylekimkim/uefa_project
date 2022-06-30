@@ -9,52 +9,48 @@
 	<body>
 	<div th:each="modify:${team}" class="container">
 	<header th:insert="header_nav.html"></header>
-	<h1>팀 정보 수정 및 삭제</h1>
+	<h1>경기 결과 및 승점 관리</h1>
 			<form th:action="@{update}" method="post" name="update">
 	  			<p class="input-group">
-				  <label for="teamModifyFormteamNum" class="input-group-text">팀 번호</label>
-				  <input name="teamNum" type="number" class="form-control" id="teamModifyFormteamNum" th:value="${modify.teamNum}" >
+				  <label class="input-group-text">팀 번호</label>
+				  <input name="teamNum" type="number" class="form-control" th:value="${modify.teamNum}" readonly>
 				</p>
 		  		<p class="input-group">
-				  <label for="teamModifyFormteamName" class="input-group-text">팀 이름</label>
-				  <input name="teamName" type="text" class="form-control" id="teamModifyFormteamName"th:value="${modify.teamName}">
+				  <label class="input-group-text">팀 이름</label>
+				  <input name="teamName" type="text" class="form-control" th:value="${modify.teamName}" readonly>
 				</p>
 				<p class="input-group">
-				  <label for="teamModifyFormteamLogo" class="input-group-text">팀 사진</label>
-				  <input name="teamLogo" type="text" class="form-control" id="teamModifyFormteamLogo" th:value="${modify.logoImage}">
+				  <label class="input-group-text">팀 사진</label>
+				  <input name="logoImage" type="text" class="form-control" th:value="${modify.logoImage}" readonly>
 				</p>
 				<p class="input-group">
-				  <label for="teamModifyFormteamLeague" class="input-group-text">소속 리그</label>
-				  <select name="league" class="form-control" id="teamModifyFormteamLeague" th:selected="${modify.leagueNum}">
-				  	<option value="1">프리미어리그</option>
-				  	<option value="2">라리가</option>
-				  	<option value="3">분데스리가</option>
-				  	<option value="4">세리에 A</option>
-				  	<option value="5">리그 앙</option>
+				  <label class="input-group-text">소속 리그</label>
+				  <select name="leagueNum" class="form-control" th:value="${modify.leagueNum}" readonly>		  	
+				  	<option th:selected="${modify.leagueNum}=='1'" value="1">프리미어리그</option>
+				  	<option th:selected="${modify.leagueNum}=='2'" value="2">라리가</option>
+				  	<option th:selected="${modify.leagueNum}=='3'" value="3">분데스리가</option>
+				  	<option th:selected="${modify.leagueNum}=='4'" value="4">세리에 A</option>
+				  	<option th:selected="${modify.leagueNum}=='5'" value="5">리그 앙</option>
 				  </select>
 				</p>
 				<p class="input-group">
-				  <label for="teamModifyFormmatch" class="input-group-text">경기 수</label>
-				  <input name="match" type="number" class="form-control" id="teamModifyFormmatch" th:value="${modify.matchCount}">
-				</p>
+				  <label class="input-group-text">경기 수</label>
+				  <input name="matchCount" type="number" class="form-control" th:value="${modify.matchCount}">
+				
+				  <label class="input-group-text">승리</label>
+				  <input name="win" type="number" class="form-control" th:value="${modify.win}">
+				
+				  <label class="input-group-text">무승부</label>
+				  <input name="tie" type="number" class="form-control" th:value="${modify.tie}">		
+				
+				  <label class="input-group-text">패배</label>
+				  <input name="defeat" type="number" class="form-control" th:value="${modify.defeat}">
+				
 				<p class="input-group">
-				  <label for="teamModifyFormwin" class="input-group-text">승리</label>
-				  <input name="win" type="number" class="form-control" id="teamModifyFormwin" th:value="${modify.win}">
-				</p>
-				<p class="input-group">
-				  <label for="teamModifyFormtie" class="input-group-text">무승부</label>
-				  <input name="tie" type="number" class="form-control" id="teamModifyFormtie" th:value="${modify.tie}">
-				</p>
-				<p class="input-group">
-				  <label for="teamModifyFormdefeat" class="input-group-text">패배</label>
-				  <input name="defeat" type="number" class="form-control" id="teamModifyFormdefeat" th:value="${modify.defeat}">
-				</p>
-				<p class="input-group">
-				  <label for="teamModifyFormpoints" class="input-group-text">승점</label>
-				  <input name="victorypoints" type="number" class="form-control" id="teamModifyFormpoints" th:value="${modify.victoryPoints}">
+				  <label class="input-group-text">승점</label>
+				  <input name="victoryPoints" type="number" class="form-control" th:value="${modify.victoryPoints}">
 				</p>
 				<p class="d-grid gap-2 d-md-flex justify-content-md-end">
-			  	<button class="btn btn-outline-danger" type="button" id="menuDelBtn">삭제</button>
 		  		<button class="btn btn-outline-primary" type="submit">수정</button>
 		  	</p>
 		</form>
