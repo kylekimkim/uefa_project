@@ -17,13 +17,9 @@ public class TeamVo {
 	private Integer leagueNum;
 	@Column(name="logo_image")
 	private String logoImage;
-	@Column(name="match_count")
-	private Integer matchCount;
 	private Integer win;
 	private Integer tie;
 	private Integer defeat;
-	@Column(name="victory_points")
-	private Integer victoryPoints;
 	
 	public Integer getTeamNum() {
 		return teamNum;
@@ -49,12 +45,6 @@ public class TeamVo {
 	public void setLogoImage(String logoImage) {
 		this.logoImage = logoImage;
 	}
-	public Integer getMatchCount() {
-		return matchCount;
-	}
-	public void setMatchCount(Integer matchCount) {
-		this.matchCount = matchCount;
-	}
 	public Integer getWin() {
 		return win;
 	}
@@ -73,18 +63,13 @@ public class TeamVo {
 	public void setDefeat(Integer defeat) {
 		this.defeat = defeat;
 	}
-	public Integer getVictoryPoints() {
-		return victoryPoints;
-	}
-	public void setVictoryPoints(Integer victoryPoints) {
-		this.victoryPoints = victoryPoints;
-	}
 	@Override
 	public String toString() {
 		return "TeamVo [teamNum=" + teamNum + ", teamName=" + teamName + ", leagueNum=" + leagueNum + ", logoImage="
-				+ logoImage + ", matchCount=" + matchCount + ", win=" + win + ", tie=" + tie + ", defeat=" + defeat
-				+ ", victoryPoints=" + victoryPoints + "]";
+				+ logoImage + ", win=" + win + ", tie=" + tie + ", defeat=" + defeat + "]";
 	}
 	
-	
 }
+	
+	
+

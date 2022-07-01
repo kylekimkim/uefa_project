@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>멤버 리스트</title>
+</head>
+<body>
+<header th:insert="/header_nav.html"></header>
+<main>
+<h1>안녕 멤버 리스트</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">아이디</th>
+      <th scope="col">이름</th>
+      <th scope="col">전화번호</th>
+      <th scope="col">이메일</th>
+      <th scope="col">주소</th>
+      <th scope="col">주소 상세</th>
+      <th scope="col">가입 시기</th>
+      <th scope="col">생년월일</th>
+      <th scope="col">회원 등급</th>
+      <th scope="col">Team</th>
+      <!-- <th scope="col">수정</th> -->
+    </tr>
+  </thead>
+  <tbody>
+   	 <tr th:each="mem:${memList}">
+		<td><a th:text="${mem.id}" href="/mem/update.do"></a></td>
+		<td th:text="${mem.name}"></td>
+		<td th:text="${mem.phone}"></td>
+		<td th:text="${mem.email}"></td>
+		<td th:text="${mem.address}"></td>
+		<td th:text="${mem.address_detail}"></td>
+		<td th:text="${mem.signup_time}"></td>
+		<td th:text="${mem.birth}"></td>
+		<td th:text="${mem.grade}"></td>
+		<td th:text="${mem.myteam}"></td>
+	</tr>
+  </tbody>
+</table>
+</main>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원정보 수정 페이지</title>
+</head>
+<body>
+<header th:insert="/header_nav.html"></header>
+<main>
+<h1>관리자 등급만 수정 가능한 페이지입니다.</h1>
+<form action="./update.do" th:each="mem:${memList}">
+	<p>
+		<label>
+			아이디:<input type="text" name="id" th:value="${mem.id}" readonly>
+		</label>
+	</p>
+	<p>
+		<label>
+			이메일:<input type="text" name="email" th:value="${mem.email}">
+		</label>
+	</p>
+	<p>
+		<label>
+			폰:<input type="text" name="phone" th:value="${mem.phone}">
+		</label>
+	</p>
+	<p>
+		<label>
+			pw:<input type="text" name="pw" th:value="${mem.pw}">
+		</label>
+	</p>
+	<p>
+		<label>
+			이름:<input type="text" name="name" th:value="${mem.name}">
+		</label>
+	</p>
+	<p>
+		<label>
+			주소:<input type="text" name="address" th:value="${mem.address}">
+		</label>
+	</p>
+	<p>
+		<label>
+			주소상세:<input type="text" name="address_detail" th:value="${mem.address_detail}">
+		</label>
+	</p>
+
+	<p>
+		<label>
+			등급:
+			<select size="1" name="grade" th:value="${mem.grade}">
+				<option value="0">관리자(0)</option>
+				<option value="1">일반회원(1)</option>
+				<option value="2">탈퇴회원(2)</option>
+			</select>
+		</label>
+	</p>
+	<p>
+		<label>
+			가입일:<input type="text" name="signup_time" th:value="${mem.signup_time}" readonly>
+		</label>
+	</p>
+	<p>
+		<label>
+			생일:<input type="date" name="birth" th:value="${mem.birth}" pattern="yyyy-MM-dd">
+		</label>
+	</p>
+	<p>
+		<label>
+			팀 선택:
+				<select name="team">
+               		<option value="0" selected>팀 목록</option>
+               		<option value="AC 밀란">AC 밀란</option>
+               		<option value="ACF 피오렌티나">ACF 피오렌티나</option>
+               		<option value="AS 로마">AS 로마</option>
+               		<option value="AS 모나코 FC">AS 모나코 FC</option>
+               		<option value="AS 생테티엔">AS 생테티엔</option>
+               		<option value="CA 오사수나">CA 오사수나</option>
+               		<option value="ES 트루아 AC">ES 트루아 AC</option>
+               		<option value="FC 낭트">FC 낭트</option>
+               		<option value="FC 로리앙">FC 로리앙</option>
+               		<option value="FC 메스">FC 메스</option>
+               		<option value="FC 바르셀로나">FC 바르셀로나</option>
+               		<option value="FC 바이에른 뮌헨">FC 바이에른 뮌헨</option>
+               		<option value="FC 아우크스부르크">FC 아우크스부르크</option>
+               		<option value="FC 우니온 베를린">FC 우니온 베를린</option>
+               		<option value="FC 인터 밀란">FC 인터 밀란</option>
+               		<option value="FC 지롱댕 드 보르도">FC 지롱댕 드 보르도</option>
+               		<option value="FC 쾰른">FC 쾰른</option>
+               		<option value="FSV 마인츠 05">FSV 마인츠 05</option>
+               		<option value="OGC 니스정">OGC 니스정</option>
+               		<option value="RB 라이프치히">RB 라이프치히</option>
+               		<option value="RC 랑스">RC 랑스</option>
+               		<option value="RC 셀타 데 비고">RC 셀타 데 비고</option>
+               		<option value="RC 스트라스부르 알자스">RC 스트라스부르 알자스</option>
+               		<option value="RCD 마요르카">RCD 마요르카</option>
+               		<option value="RCD 에스파뇰">RCD 에스파뇰</option>
+               		<option value="SC 프라이부르크">SC 프라이부르크</option>
+               		<option value="SS 라치오">SS 라치오</option>
+               		<option value="SSC 나폴리">SSC 나폴리</option>
+               		<option value="TSG 1899 호펜하임">TSG 1899 호펜하임</option>
+               		<option value="UC 삼프도리아">UC 삼프도리아</option>
+               		<option value="US 사수올로 칼초">US 사수올로 칼초</option>
+               		<option value="VfB 슈투르가르트">VfB 슈투르가르트</option>
+               		<option value="VfL 볼프스부르크">VfL 볼프스부르크</option>
+               		<option value="Vlf 보훔">Vlf 보훔</option>
+               		<option value="그라나다 CF">그라나다 CF</option>
+               		<option value="그로이터 퓌르트">그로이터 퓌르트</option>
+               		<option value="노리치 시티 FC">노리치 시티 FC</option>
+               		<option value="뉴캐슬 유나이티드 FC">뉴캐슬 유나이티드 FC</option>
+               		<option value="데포르티보 알라베스">데포르티보 알라베스</option>
+               		<option value="라요 바예카노">라요 바예카노</option>
+               		<option value="레반테 UD">레반테 UD</option>
+               		<option value="레스터 시티 FC">레스터 시티 FC</option>
+               		<option value="레알 마드리드 CF">레알 마드리드 CF</option>
+               		<option value="레알 베티스 발롬피에">레알 베티스 발롬피에</option>
+               		<option value="레알 소시에다드">레알 소시에다드</option>
+               		<option value="리버풀 FC">리버풀 FC</option>
+               		<option value="리즈 유나이티드 FC">리즈 유나이티드 FC</option>
+               		<option value="릴 OSC">릴 OSC</option>
+               		<option value="맨체스터 시티 FC">맨체스터 시티 FC</option>
+               		<option value="맨체스터 유나이티드 FC">맨체스터 유나이티드 FC</option>
+               		<option value="몽펠리에 에로 SC">몽펠리에 에로 SC</option>
+               		<option value="바이어 04 레버쿠젠">바이어 04 레버쿠젠</option>
+               		<option value="발렌시아 CF">발렌시아 CF</option>
+               		<option value="번리 FC">번리 FC</option>
+               		<option value="베네치아 FC">베네치아 FC</option>
+               		<option value="보루시아 도르트문트">보루시아 도르트문트</option>
+               		<option value="보루시아 묀헨글라트바흐">보루시아 묀헨글라트바흐</option>
+               		<option value="볼라냐 FC 1909">볼라냐 FC 1909</option>
+               		<option value="브라이튼 앤 호브 알비온 FC">브라이튼 앤 호브 알비온 FC</option>
+               		<option value="브렌트포드 FC">브렌트포드 FC</option>
+               		<option value="비야레알 CF">비야레알 CF</option>
+               		<option value="사우샘프턴 FC">사우샘프턴 FC</option>
+               		<option value="세비야 FC">세비야 FC</option>
+               		<option value="스타드 랭스">스타드 랭스</option>
+               		<option value="스타드 렌 FC">스타드 렌 FC</option>
+               		<option value="스타드 브레스투아">스타드 브레스투아</option>
+               		<option value="스페지아">스페지아</option>
+               		<option value="스포티바 살레르니타나">스포티바 살레르니타나</option>
+               		<option value="아르미니아 빌레펠트">아르미니아 빌레펠트</option>
+               		<option value="아스널 FC">아스널 FC</option>
+               		<option value="아스톤 빌라 FC">아스톤 빌라 FC</option>
+               		<option value="아인트라흐트 프랑크푸르트">아인트라흐트 프랑크푸르트</option>
+               		<option value="아탈란타 BC">아탈란타 BC</option>
+               		<option value="아틀레틱 클루브">아틀레틱 클루브</option>
+               		<option value="앙제 SCO">앙제 SCO</option>
+               		<option value="에버턴 FC">에버턴 FC</option>
+               		<option value="엘라스 베로나 FC">엘라스 베로나 FC</option>
+               		<option value="엘체 CF">엘체 CF</option>
+               		<option value="엠폴리 FC">엠폴리 FC</option>
+               		<option value="올랭피크 드 마르세유">올랭피크 드 마르세유</option>
+               		<option value="왓포드 FC">왓포드 FC</option>
+               		<option value="우디세네 칼초">우디세네 칼초</option>
+               		<option value="울버햄튼 원더러스 FC">울버햄튼 원더러스 FC</option>
+               		<option value="웨스트햄 유나이티드 FC">웨스트햄 유나이티드 FC</option>
+               		<option value="유벤투스 FC">유벤투스 FC</option>
+               		<option value="제노아 CFC">제노아 CFC</option>
+               		<option value="첼시 FC">첼시 FC</option>
+               		<option value="카디스 CF">카디스 CF</option>
+               		<option value="칼리아리 칼초">칼리아리 칼초</option>
+               		<option value="크리스탈 팰리스 FC">크리스탈 팰리스 FC</option>
+               		<option value="클레르몽">클레르몽</option>
+               		<option value="클루브 아틀레티코 데 마드리드">클루브 아틀레티코 데 마드리드</option>
+               		<option value="토리노 FC">토리노 FC</option>
+               		<option value="토트넘 홋스퍼 FC">토트넘 홋스퍼 FC</option>
+               		<option value="파리 생제르맹 FC">파리 생제르맹 FC</option>
+               		<option value="헤르타 BSC">헤르타 BSC</option>
+               		<option value="헤타페 CF">헤타페 CF</option>                		
+               	</select>
+		</label>
+	</p>	
+	<p>
+		<button type="reset">리셋</button>
+		<button type="submit">제출</button>
+	</p>
+
+</form>
+
+</main>
+</body>
+</html>

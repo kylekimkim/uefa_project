@@ -27,8 +27,8 @@
 				<tr th:each="epl:${eplList}">	
 					<td class="rank"></td>
 					<td th:text="${epl.teamName}"></td>
-					<td th:text="${epl.matchCount}"></td>
-					<td th:text="${epl.victoryPoints}"></td>
+					<td th:text="${epl.win}+${epl.tie}+${epl.defeat}"></td>
+					<td th:text="${epl.win}*3+${epl.tie}"></td>
 					<td th:text="${epl.win}"></td>
 					<td th:text="${epl.tie}"></td>
 					<td th:text="${epl.defeat}"></td>			
@@ -45,8 +45,8 @@
 				<tr th:each="laliga:${laligaList}">	
 					<td class="rank"></td>
 					<td th:text="${laliga.teamName}"></td>
-					<td th:text="${laliga.matchCount}"></td>
-					<td th:text="${laliga.victoryPoints}"></td>
+					<td th:text="${laliga.win}+${laliga.tie}+${laliga.defeat}"></td>
+					<td th:text="${laliga.win}*3+${laliga.tie}"></td>
 					<td th:text="${laliga.win}"></td>
 					<td th:text="${laliga.tie}"></td>
 					<td th:text="${laliga.defeat}"></td>			
@@ -63,8 +63,8 @@
 				<tr th:each="serie:${serieList}">	
 					<td class="rank"></td>
 					<td th:text="${serie.teamName}"></td>
-					<td th:text="${serie.matchCount}"></td>
-					<td th:text="${serie.victoryPoints}"></td>
+					<td th:text="${serie.win}+${serie.tie}+${serie.defeat}"></td>
+					<td th:text="${serie.win}*3+${serie.tie}"></td>
 					<td th:text="${serie.win}"></td>
 					<td th:text="${serie.tie}"></td>
 					<td th:text="${serie.defeat}"></td>			
@@ -81,8 +81,8 @@
 				<tr th:each="ang:${angList}">	
 					<td class="rank"></td>
 					<td th:text="${ang.teamName}"></td>
-					<td th:text="${ang.matchCount}"></td>
-					<td th:text="${ang.victoryPoints}"></td>
+					<td th:text="${ang.win}+${ang.tie}+${ang.defeat}"></td>
+					<td th:text="${ang.win}*3+${ang.tie}"></td>
 					<td th:text="${ang.win}"></td>
 					<td th:text="${ang.tie}"></td>
 					<td th:text="${ang.defeat}"></td>			
@@ -99,8 +99,26 @@
 				<tr th:each="bundes:${bundesList}">	
 					<td class="rank"></td>
 					<td th:text="${bundes.teamName}"></td>
-					<td th:text="${bundes.matchCount}"></td>
-					<td th:text="${bundes.victoryPoints}"></td>
+					<td th:text="${bundes.win}+${bundes.tie}+${bundes.defeat}"></td>
+					<td th:text="${bundes.win}*3+${bundes.tie}"></td>
+					<td th:text="${bundes.win}"></td>
+					<td th:text="${bundes.tie}"></td>
+					<td th:text="${bundes.defeat}"></td>			
+				</tr>
+			</tbody>
+		</table>
+	  </div>
+	  <div class="tab-pane fade" id="germany-list" role="tabpanel" aria-labelledby="nav-home-tab"> 
+	  	<table class="table">
+			<thead>
+				<th>순위</th><th>팀</th><th>경기 수</th><th>승점</th><th>승</th><th>무</th><th>패</th>			
+			</thead>
+			<tbody>
+				<tr th:each="bundes:${bundesList}">	
+					<td class="rank"></td>
+					<td th:text="${bundes.teamName}"></td>
+					<td th:text="${bundes.win}+${bundes.tie}+${bundes.defeat}"></td>
+					<td th:text="${bundes.win}*3+${bundes.tie}"></td>
 					<td th:text="${bundes.win}"></td>
 					<td th:text="${bundes.tie}"></td>
 					<td th:text="${bundes.defeat}"></td>			
