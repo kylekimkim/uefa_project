@@ -1,24 +1,16 @@
 package com.uefa.controller;
 
-import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 import com.uefa.repository.TeamRepository;
 import com.uefa.vo.TeamVo;
@@ -31,21 +23,21 @@ public class TeamController {
 		
 	@GetMapping("/list.do")
 	public String list(Model model) {	
-		model.addAttribute("eplList", tr.eplByOrderByVictoryPointsDesc(1));
-		model.addAttribute("laligaList", tr.laligaByOrderByVictoryPointsDesc(2));
-		model.addAttribute("bundesList", tr.bundesByOrderByVictoryPointsDesc(3));
-		model.addAttribute("serieList", tr.serieByOrderByVictoryPointsDesc(4));
-		model.addAttribute("angList", tr.angByOrderByVictoryPointsDesc(5));
+		model.addAttribute("eplList", tr.rankByOrderByVictoryPointsDesc(1));
+		model.addAttribute("laligaList", tr.rankByOrderByVictoryPointsDesc(2));
+		model.addAttribute("bundesList", tr.rankByOrderByVictoryPointsDesc(3));
+		model.addAttribute("serieList", tr.rankByOrderByVictoryPointsDesc(4));
+		model.addAttribute("angList", tr.rankByOrderByVictoryPointsDesc(5));
 		return "/team/list";
 	}
 	
 	@GetMapping("/rank.do")
 	public String rank(Model model) {
-		model.addAttribute("eplList", tr.eplByOrderByVictoryPointsDesc(1));
-		model.addAttribute("laligaList", tr.laligaByOrderByVictoryPointsDesc(2));
-		model.addAttribute("bundesList", tr.bundesByOrderByVictoryPointsDesc(3));
-		model.addAttribute("serieList", tr.serieByOrderByVictoryPointsDesc(4));
-		model.addAttribute("angList", tr.angByOrderByVictoryPointsDesc(5));
+		model.addAttribute("eplList", tr.rankByOrderByVictoryPointsDesc(1));
+		model.addAttribute("laligaList", tr.rankByOrderByVictoryPointsDesc(2));
+		model.addAttribute("bundesList", tr.rankByOrderByVictoryPointsDesc(3));
+		model.addAttribute("serieList", tr.rankByOrderByVictoryPointsDesc(4));
+		model.addAttribute("angList", tr.rankByOrderByVictoryPointsDesc(5));
 		return "/team/rank";
 	}
 	@GetMapping("/modify")

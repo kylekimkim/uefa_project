@@ -19,7 +19,7 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class=nav-link href="/match/list.do">
+							<a class=nav-link href="/match/2122/list.do">
 								경기일정 및 결과
 							</a>
 						</li>
@@ -28,7 +28,7 @@
 								리그 순위
 							</a>
 						</li>
-						  <li class="nav-item dropdown">
+						  <li class="nav-item dropdown" th:if="${session.memVo} and ${session.memVo.grade == 0}">
 						    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">관리자 전용</a>
 						    <ul class="dropdown-menu">
 						      <li><a class="dropdown-item" href="/mem/list.do">멤버 관리</a></li>

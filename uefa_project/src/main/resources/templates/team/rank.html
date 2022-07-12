@@ -10,11 +10,11 @@
 			
 	<nav>
 		<div class="nav nav-pills nav-justified" id="nav-tab" role="tablist">
-	    <button class="nav-link active" id="uk-list-tab" data-bs-toggle="tab" data-bs-target="#uk-list" type="button" role="tab" aria-controls="uk-list" aria-selected="true"> 프리미어리그</button>
-	    <button class="nav-link" id="spain-list-tab" data-bs-toggle="tab" data-bs-target="#spain-list" type="button" role="tab" aria-controls="spain-list" aria-selected="false">라리가</button>
-	    <button class="nav-link" id="italia-list-tab" data-bs-toggle="tab" data-bs-target="#italia-list" type="button" role="tab" aria-controls="italia-list" aria-selected="false">세리에 A</button>
-	    <button class="nav-link" id="france-list-tab" data-bs-toggle="tab" data-bs-target="#france-list" type="button" role="tab" aria-controls="france-list" aria-selected="false">리그 앙</button>
-	  	<button class="nav-link" id="germany-list-tab" data-bs-toggle="tab" data-bs-target="#germany-list" type="button" role="tab" aria-controls="germany-list" aria-selected="false">분데스리가</button>
+	    <button class="nav-link active" id="uk-list-tab" data-bs-toggle="tab" data-bs-target="#uk-list" type="button" role="tab" aria-controls="uk-list" aria-selected="true"><img src="/img/league/epl.png"> 프리미어리그</button>
+	    <button class="nav-link" id="spain-list-tab" data-bs-toggle="tab" data-bs-target="#spain-list" type="button" role="tab" aria-controls="spain-list" aria-selected="false"><img src="/img/league/laliga.png"> 라리가</button>
+	    <button class="nav-link" id="italia-list-tab" data-bs-toggle="tab" data-bs-target="#italia-list" type="button" role="tab" aria-controls="italia-list" aria-selected="false"><img src="/img/league/serie.png"> 세리에 A</button>
+	    <button class="nav-link" id="france-list-tab" data-bs-toggle="tab" data-bs-target="#france-list" type="button" role="tab" aria-controls="france-list" aria-selected="false"><img src="/img/league/ang.png"> 리그 앙</button>
+	  	<button class="nav-link" id="germany-list-tab" data-bs-toggle="tab" data-bs-target="#germany-list" type="button" role="tab" aria-controls="germany-list" aria-selected="false"><img src="/img/league/bundes.png"> 분데스리가</button>
 	  </div>
 	</nav>
 	<div class="tab-content" id="nav-tabContent">
@@ -26,9 +26,9 @@
 			<tbody>
 				<tr th:each="epl:${eplList}">	
 					<td class="rank"></td>
-					<td th:text="${epl.teamName}"></td>
+					<td><img th:src="@{/img/epl/{img}(img=${epl.logoImage})}">[[${epl.teamName}]]</td>
 					<td th:text="${epl.win}+${epl.tie}+${epl.defeat}"></td>
-					<td th:text="${epl.win}*3+${epl.tie}"></td>
+					<td th:text="${epl.win}*3+${epl.tie}" style="color:red"></td>
 					<td th:text="${epl.win}"></td>
 					<td th:text="${epl.tie}"></td>
 					<td th:text="${epl.defeat}"></td>			
@@ -44,9 +44,9 @@
 			<tbody>
 				<tr th:each="laliga:${laligaList}">	
 					<td class="rank"></td>
-					<td th:text="${laliga.teamName}"></td>
+					<td><img th:src="@{/img/laliga/{img}(img=${laliga.logoImage})}">[[${laliga.teamName}]]</td>
 					<td th:text="${laliga.win}+${laliga.tie}+${laliga.defeat}"></td>
-					<td th:text="${laliga.win}*3+${laliga.tie}"></td>
+					<td th:text="${laliga.win}*3+${laliga.tie}" style="color:red"></td>
 					<td th:text="${laliga.win}"></td>
 					<td th:text="${laliga.tie}"></td>
 					<td th:text="${laliga.defeat}"></td>			
@@ -62,9 +62,9 @@
 			<tbody>
 				<tr th:each="serie:${serieList}">	
 					<td class="rank"></td>
-					<td th:text="${serie.teamName}"></td>
+					<td><img th:src="@{/img/serie/{img}(img=${serie.logoImage})}">[[${serie.teamName}]]</td>
 					<td th:text="${serie.win}+${serie.tie}+${serie.defeat}"></td>
-					<td th:text="${serie.win}*3+${serie.tie}"></td>
+					<td th:text="${serie.win}*3+${serie.tie}" style="color:red"></td>
 					<td th:text="${serie.win}"></td>
 					<td th:text="${serie.tie}"></td>
 					<td th:text="${serie.defeat}"></td>			
@@ -80,9 +80,9 @@
 			<tbody>
 				<tr th:each="ang:${angList}">	
 					<td class="rank"></td>
-					<td th:text="${ang.teamName}"></td>
+					<td><img th:src="@{/img/ang/{img}(img=${ang.logoImage})}">[[${ang.teamName}]]</td>
 					<td th:text="${ang.win}+${ang.tie}+${ang.defeat}"></td>
-					<td th:text="${ang.win}*3+${ang.tie}"></td>
+					<td th:text="${ang.win}*3+${ang.tie}" style="color:red"></td>
 					<td th:text="${ang.win}"></td>
 					<td th:text="${ang.tie}"></td>
 					<td th:text="${ang.defeat}"></td>			
@@ -98,27 +98,9 @@
 			<tbody>
 				<tr th:each="bundes:${bundesList}">	
 					<td class="rank"></td>
-					<td th:text="${bundes.teamName}"></td>
+					<td><img th:src="@{/img/bundes/{img}(img=${bundes.logoImage})}">[[${bundes.teamName}]]</td>
 					<td th:text="${bundes.win}+${bundes.tie}+${bundes.defeat}"></td>
-					<td th:text="${bundes.win}*3+${bundes.tie}"></td>
-					<td th:text="${bundes.win}"></td>
-					<td th:text="${bundes.tie}"></td>
-					<td th:text="${bundes.defeat}"></td>			
-				</tr>
-			</tbody>
-		</table>
-	  </div>
-	  <div class="tab-pane fade" id="germany-list" role="tabpanel" aria-labelledby="nav-home-tab"> 
-	  	<table class="table">
-			<thead>
-				<th>순위</th><th>팀</th><th>경기 수</th><th>승점</th><th>승</th><th>무</th><th>패</th>			
-			</thead>
-			<tbody>
-				<tr th:each="bundes:${bundesList}">	
-					<td class="rank"></td>
-					<td th:text="${bundes.teamName}"></td>
-					<td th:text="${bundes.win}+${bundes.tie}+${bundes.defeat}"></td>
-					<td th:text="${bundes.win}*3+${bundes.tie}"></td>
+					<td th:text="${bundes.win}*3+${bundes.tie}" style="color:red"></td>
 					<td th:text="${bundes.win}"></td>
 					<td th:text="${bundes.tie}"></td>
 					<td th:text="${bundes.defeat}"></td>			
