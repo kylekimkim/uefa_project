@@ -4,10 +4,10 @@
 	</head>
 
 	
-	<body>
-	<div th:each="modify:${team}" class="container">
+	<body class="admin">
 	<header th:insert="header_nav.html"></header>
-	<h1>경기 결과 관리</h1>
+	<div th:each="modify:${team}" class="container">
+	<h1 style="color:white;">경기 결과 관리</h1>
 			<form th:action="@{update}" method="post" name="update">
 	  			<p class="input-group"hidden>
 				  <label class="input-group-text">팀 번호</label>
@@ -47,10 +47,10 @@
 				  <label class="input-group-text">패배</label>
 				  <input name="defeat" type="number" class="form-control" th:value="${modify.defeat}">
 				</p>
-				  <span>*경기 수, 승점은 자동 변동됩니다.</span>
+				  <span style="color:white;">*경기 수, 승점은 자동 변동됩니다.</span>
 				<p class="d-grid gap-2 d-md-flex justify-content-md-end">
-		  		<button class="btn btn-outline-primary" type="submit">수정</button>
-		  	</p>
+		  			<button class="btn btn-primary" type="submit">수정</button>
+		  		</p>
 		</form>
 	</div>
 	</body>

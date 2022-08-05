@@ -4,8 +4,8 @@
 	</head>
 	
 	<body>
+		<header th:insert="header_nav.html"></header>
 		<div class="container">
-			<header th:insert="header_nav.html"></header>
 			<h1>팀 추가</h1>
 			<form th:action="@{insert}" method="post" name="insert">
 				<p class="input-group">

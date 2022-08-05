@@ -1,0 +1,267 @@
+<html lang="en" xmlns:th="http:/www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+	</head>
+
+	<style>
+	.league{
+		width: 100px;
+	    height: 100px;
+	    padding: 10px;
+	    margin: 10px;
+	    text-decoration: none;
+	    text-align: center;
+	    color:rgb(128, 128, 128);
+	}
+	.season{
+		display: flex;
+		justify-content: center;
+		align-items:center;
+		top:50%;
+		left:50%;
+		width: 50%;
+	    height: 30px;
+	    padding: 10px;
+	    margin:0 auto;
+	    text-decoration: none;
+	    text-align: center;
+	    font-size:40px;
+	    color:rgb(0, 0, 0);
+	}
+	.move{
+		background-color:white;
+		border: 0px;
+	}
+	th,td{
+		padding:50px;
+	}
+	table{
+		width:100%;
+	}
+	.score{
+		text-align: center;
+	}
+	</style>
+	<body>
+		<header th:insert="header_nav.html"></header>
+		<div class="container">
+			<h1>리그별 경기 일정</h1>
+			
+				<p style="text-align: center;">
+					<a class="league" href="/match/2122/list.do">
+						<span> <img src="/img/league/epl.png" alt="league_image"> 프리미어리그</span>
+					</a>
+					<a class="league" href="/match/2122/listLaliga">
+						<img src="/img/league/laliga.png" alt="league_image"><span> 라리가</span>
+					</a>
+					<a class="league" href="/match/2122/listBundes">
+						<img src="/img/league/bundes.png" alt="league_image"><span><span><strong style="color:blue"> 분데스리가</strong></span>
+					</a>
+					<a class="league" href="/match/2122/listSerie">
+						<img src="/img/league/serie.png" alt="league_image"><span> 세리에 A</span>
+					</a>
+					<a class="league" href="/match/2122/listAng">
+						<img src="/img/league/ang.png" alt="league_image"> 리그 앙</span>
+					</a>	
+				</p>
+			
+				<div class="season">
+					<button class="move" type="submit" onclick="confirm()">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+  							<path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+						</svg>
+					</button>
+					 2021-2022
+					<button class="move" type="submit" onclick="location.href='/match/2223/listBundes'">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+							<path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+						</svg>	
+					</button>
+				</div>
+				<br>
+			<nav>
+				<div class="nav nav-pills nav-justified" id="nav-tab" role="tablist">
+				    <button class="nav-link active" id="aug-list-tab" data-bs-toggle="tab" data-bs-target="#aug-list" type="button" role="tab" aria-controls="aug-list" aria-selected="true">8월</button>
+				    <button class="nav-link" id="sep-list-tab" data-bs-toggle="tab" data-bs-target="#sep-list" type="button" role="tab" aria-controls="sep-list" aria-selected="false">9월</button>
+				    <button class="nav-link" id="oct-list-tab" data-bs-toggle="tab" data-bs-target="#oct-list" type="button" role="tab" aria-controls="oct-list" aria-selected="false">10월</button>
+				    <button class="nav-link" id="nov-list-tab" data-bs-toggle="tab" data-bs-target="#nov-list" type="button" role="tab" aria-controls="nov-list" aria-selected="false">11월</button>
+				  	<button class="nav-link" id="dec-list-tab" data-bs-toggle="tab" data-bs-target="#dec-list" type="button" role="tab" aria-controls="dec-list" aria-selected="false">12월</button>
+				  	<button class="nav-link" id="jan-list-tab" data-bs-toggle="tab" data-bs-target="#jan-list" type="button" role="tab" aria-controls="jan-list" aria-selected="false">1월</button>
+				  	<button class="nav-link" id="feb-list-tab" data-bs-toggle="tab" data-bs-target="#feb-list" type="button" role="tab" aria-controls="feb-list" aria-selected="false">2월</button>
+				  	<button class="nav-link" id="mar-list-tab" data-bs-toggle="tab" data-bs-target="#mar-list" type="button" role="tab" aria-controls="mar-list" aria-selected="false">3월</button>
+				  	<button class="nav-link" id="api-list-tab" data-bs-toggle="tab" data-bs-target="#api-list" type="button" role="tab" aria-controls="api-list" aria-selected="false">4월</button>
+				  	<button class="nav-link" id="may-list-tab" data-bs-toggle="tab" data-bs-target="#may-list" type="button" role="tab" aria-controls="may-list" aria-selected="false">5월</button>
+			  	</div>
+			</nav>	
+			<br>
+			<div class="tab-content" id="nav-tabContent">
+  				<div class="tab-pane fade show active" id="aug-list" role="tabpanel" aria-labelledby="nav-home-tab">
+	  				<table class="table">
+						<thead>
+							<th>날짜</th><th>시간</th><th style="text-align: right;">홈</th><th style="text-align: center;">결과</th><th>원정</th>			
+						</thead>
+						<tbody>
+							<tr th:each="aug:${Aug}">	
+								<td th:text="${#dates.format(aug.matchDate,'MM-dd')}" style="color:blue"></td>
+								<td th:text="${aug.matchTime}"></td>
+								<td style="text-align: right;">[[${aug.homeTeam}]]<img th:src="@{/img/{img}(img=${aug.homeLogo})}" width="35px;"></td>
+								<td class="score" style="font-size:20px;">[[${aug.homeScore}]] : [[${aug.awayScore}]]</td>
+								<td><img th:src="@{/img/{img}(img=${aug.awayLogo})}" width="35px;">[[${aug.awayTeam}]]</td>		
+							</tr>
+						</tbody>
+					</table>	
+				</div>
+				<div class="tab-pane fade" id="sep-list" role="tabpanel" aria-labelledby="nav-home-tab">
+	  				<table class="table">
+						<thead>
+							<th>날짜</th><th>시간</th><th style="text-align: right;">홈</th><th style="text-align: center;">결과</th><th>원정</th>			
+						</thead>
+						<tbody>
+							<tr th:each="sep:${Sep}">	
+								<td th:text="${#dates.format(sep.matchDate,'MM-dd')}" style="color:blue"></td>
+								<td th:text="${sep.matchTime}"></td>
+								<td style="text-align: right;">[[${sep.homeTeam}]]<img th:src="@{/img/{img}(img=${sep.homeLogo})}" width="35px;"></td>
+								<td class="score" style="font-size:20px;">[[${sep.homeScore}]] : [[${sep.awayScore}]]</td>
+								<td><img th:src="@{/img/{img}(img=${sep.awayLogo})}" width="35px;">[[${sep.awayTeam}]]</td>		
+							</tr>
+						</tbody>
+					</table>	
+				</div>
+				<div class="tab-pane fade" id="oct-list" role="tabpanel" aria-labelledby="nav-home-tab">
+	  				<table class="table">
+						<thead>
+							<th>날짜</th><th>시간</th><th style="text-align: right;">홈</th><th style="text-align: center;">결과</th><th>원정</th>			
+						</thead>
+						<tbody>
+							<tr th:each="oct:${Oct}">	
+								<td th:text="${#dates.format(oct.matchDate,'MM-dd')}" style="color:blue"></td>
+								<td th:text="${oct.matchTime}"></td>
+								<td style="text-align: right;">[[${oct.homeTeam}]]<img th:src="@{/img/{img}(img=${oct.homeLogo})}" width="35px;"></td>
+								<td class="score" style="font-size:20px;">[[${oct.homeScore}]] : [[${oct.awayScore}]]</td>
+								<td><img th:src="@{/img/{img}(img=${oct.awayLogo})}" width="35px;">[[${oct.awayTeam}]]</td>		
+							</tr>
+						</tbody>
+					</table>	
+				</div>
+				<div class="tab-pane fade" id="nov-list" role="tabpanel" aria-labelledby="nav-home-tab">
+	  				<table class="table">
+						<thead>
+							<th>날짜</th><th>시간</th><th style="text-align: right;">홈</th><th style="text-align: center;">결과</th><th>원정</th>			
+						</thead>
+						<tbody>
+							<tr th:each="nov:${Nov}">	
+								<td th:text="${#dates.format(nov.matchDate,'MM-dd')}" style="color:blue"></td>
+								<td th:text="${nov.matchTime}"></td>
+								<td style="text-align: right;">[[${nov.homeTeam}]]<img th:src="@{/img/{img}(img=${nov.homeLogo})}" width="35px;"></td>
+								<td class="score" style="font-size:20px;">[[${nov.homeScore}]] : [[${nov.awayScore}]]</td>
+								<td><img th:src="@{/img/{img}(img=${nov.awayLogo})}" width="35px;">[[${nov.awayTeam}]]</td>			
+							</tr>
+						</tbody>
+					</table>	
+				</div>
+				<div class="tab-pane fade" id="dec-list" role="tabpanel" aria-labelledby="nav-home-tab">
+	  				<table class="table">
+						<thead>
+							<th>날짜</th><th>시간</th><th style="text-align: right;">홈</th><th style="text-align: center;">결과</th><th>원정</th>			
+						</thead>
+						<tbody>
+							<tr th:each="dec:${Dec}">	
+								<td th:text="${#dates.format(dec.matchDate,'MM-dd')}" style="color:blue"></td>
+								<td th:text="${dec.matchTime}"></td>
+								<td style="text-align: right;">[[${dec.homeTeam}]]<img th:src="@{/img/{img}(img=${dec.homeLogo})}" width="35px;"></td>
+								<td class="score" style="font-size:20px;">[[${dec.homeScore}]] : [[${dec.awayScore}]]</td>
+								<td><img th:src="@{/img/{img}(img=${dec.awayLogo})}" width="35px;">[[${dec.awayTeam}]]</td>		
+							</tr>
+						</tbody>
+					</table>	
+				</div>
+				<div class="tab-pane fade" id="jan-list" role="tabpanel" aria-labelledby="nav-home-tab">
+	  				<table class="table">
+						<thead>
+							<th>날짜</th><th>시간</th><th style="text-align: right;">홈</th><th style="text-align: center;">결과</th><th>원정</th>			
+						</thead>
+						<tbody>
+							<tr th:each="jan:${Jan}">	
+								<td th:text="${#dates.format(jan.matchDate,'MM-dd')}" style="color:blue"></td>
+								<td th:text="${jan.matchTime}"></td>
+								<td style="text-align: right;">[[${jan.homeTeam}]]<img th:src="@{/img/{img}(img=${jan.homeLogo})}" width="35px;"></td>
+								<td class="score" style="font-size:20px;">[[${jan.homeScore}]] : [[${jan.awayScore}]]</td>
+								<td><img th:src="@{/img/{img}(img=${jan.awayLogo})}" width="35px;">[[${jan.awayTeam}]]</td>		
+							</tr>
+						</tbody>
+					</table>	
+				</div>
+				<div class="tab-pane fade" id="feb-list" role="tabpanel" aria-labelledby="nav-home-tab">
+	  				<table class="table">
+						<thead>
+							<th>날짜</th><th>시간</th><th style="text-align: right;">홈</th><th style="text-align: center;">결과</th><th>원정</th>			
+						</thead>
+						<tbody>
+							<tr th:each="feb:${Feb}">	
+								<td th:text="${#dates.format(feb.matchDate,'MM-dd')}" style="color:blue"></td>
+								<td th:text="${feb.matchTime}"></td>
+								<td style="text-align: right;">[[${feb.homeTeam}]]<img th:src="@{/img/{img}(img=${feb.homeLogo})}" width="35px;"></td>
+								<td class="score" style="font-size:20px;">[[${feb.homeScore}]] : [[${feb.awayScore}]]</td>
+								<td><img th:src="@{/img/{img}(img=${feb.awayLogo})}" width="35px;">[[${feb.awayTeam}]]</td>		
+							</tr>
+						</tbody>
+					</table>	
+				</div>
+				<div class="tab-pane fade" id="mar-list" role="tabpanel" aria-labelledby="nav-home-tab">
+	  				<table class="table">
+						<thead>
+							<th>날짜</th><th>시간</th><th style="text-align: right;">홈</th><th style="text-align: center;">결과</th><th>원정</th>			
+						</thead>
+						<tbody>
+							<tr th:each="mar:${Mar}">	
+								<td th:text="${#dates.format(mar.matchDate,'MM-dd')}" style="color:blue"></td>
+								<td th:text="${mar.matchTime}"></td>
+								<td style="text-align: right;">[[${mar.homeTeam}]]<img th:src="@{/img/{img}(img=${mar.homeLogo})}" width="35px;"></td>
+								<td class="score" style="font-size:20px;">[[${mar.homeScore}]] : [[${mar.awayScore}]]</td>
+								<td><img th:src="@{/img/{img}(img=${mar.awayLogo})}" width="35px;">[[${mar.awayTeam}]]</td>		
+							</tr>
+						</tbody>
+					</table>	
+				</div>
+				<div class="tab-pane fade" id="api-list" role="tabpanel" aria-labelledby="nav-home-tab">
+	  				<table class="table">
+						<thead>
+							<th>날짜</th><th>시간</th><th style="text-align: right;">홈</th><th style="text-align: center;">결과</th><th>원정</th>			
+						</thead>
+						<tbody>
+							<tr th:each="api:${Api}">	
+								<td th:text="${#dates.format(api.matchDate,'MM-dd')}" style="color:blue"></td>
+								<td th:text="${api.matchTime}"></td>
+								<td style="text-align: right;">[[${api.homeTeam}]]<img th:src="@{/img/{img}(img=${api.homeLogo})}" width="35px;"></td>
+								<td class="score" style="font-size:20px;">[[${api.homeScore}]] : [[${api.awayScore}]]</td>
+								<td ><img th:src="@{/img/{img}(img=${api.awayLogo})}" width="35px;">[[${api.awayTeam}]]</td>		
+							</tr>
+						</tbody>
+					</table>	
+				</div>
+				<div class="tab-pane fade" id="may-list" role="tabpanel" aria-labelledby="nav-home-tab">
+	  				<table class="table">
+						<thead>
+							<th>날짜</th><th>시간</th><th style="text-align: right;">홈</th><th style="text-align: center;">결과</th><th>원정</th>			
+						</thead>
+						<tbody>
+							<tr th:each="may:${May}">	
+								<td th:text="${#dates.format(may.matchDate,'MM-dd')}" style="color:blue"></td>
+								<td th:text="${may.matchTime}"></td>
+								<td style="text-align: right;">[[${may.homeTeam}]]<img th:src="@{/img/{img}(img=${may.homeLogo})}" width="35px;"></td>
+								<td class="score" style="font-size:20px;">[[${may.homeScore}]] : [[${may.awayScore}]]</td>
+								<td><img th:src="@{/img/{img}(img=${may.awayLogo})}" width="35px;">[[${may.awayTeam}]]</td>		
+							</tr>
+						</tbody>
+					</table>	
+				</div>
+			</div>	
+		</div>
+	</body>
+	<script>
+		function confirm(){
+			alert("이전 시즌 경기 일정이 존재 하지않습니다.");
+		}
+	</script>
+</html>
+		

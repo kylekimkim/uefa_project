@@ -1,0 +1,167 @@
+<html lang="en" xmlns:th="http:/www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+	</head>
+	<style>
+		.season{
+			display: flex;
+			justify-content: center;
+			align-items:center;
+			top:50%;
+			left:50%;
+			width: 50%;
+		    height: 30px;
+		    padding: 10px;
+		    margin:0 auto;
+		    text-decoration: none;
+		    text-align: center;
+		    font-size:40px;
+		    color:rgb(0, 0, 0);
+		}
+		.move{
+		background-color:white;
+		border: 0px;
+		}
+	</style>
+	<body>
+		<header th:insert="header_nav.html"></header>
+		<div class="container">
+			<br><br>
+			<div class="season">
+					<button class="move" type="submit" onclick="confirm()">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+							<path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+						</svg>
+					</button>
+					 2021-2022
+					<button class="move" type="submit" onclick="location.href='/team/2223/rank.do'">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+							<path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+						</svg>	
+					</button>
+			</div>		
+			<br>
+			<nav>
+				<div class="nav nav-pills nav-justified" id="nav-tab" role="tablist">
+			    <button class="nav-link active" id="uk-list-tab" data-bs-toggle="tab" data-bs-target="#uk-list" type="button" role="tab" aria-controls="uk-list" aria-selected="true"><img src="/img/league/epl.png"> 프리미어리그</button>
+			    <button class="nav-link" id="spain-list-tab" data-bs-toggle="tab" data-bs-target="#spain-list" type="button" role="tab" aria-controls="spain-list" aria-selected="false"><img src="/img/league/laliga.png"> 라리가</button>
+			    <button class="nav-link" id="italia-list-tab" data-bs-toggle="tab" data-bs-target="#italia-list" type="button" role="tab" aria-controls="italia-list" aria-selected="false"><img src="/img/league/serie.png"> 세리에 A</button>
+			    <button class="nav-link" id="france-list-tab" data-bs-toggle="tab" data-bs-target="#france-list" type="button" role="tab" aria-controls="france-list" aria-selected="false"><img src="/img/league/ang.png"> 리그 앙</button>
+			  	<button class="nav-link" id="germany-list-tab" data-bs-toggle="tab" data-bs-target="#germany-list" type="button" role="tab" aria-controls="germany-list" aria-selected="false"><img src="/img/league/bundes.png"> 분데스리가</button>
+			  </div>
+			</nav>
+			<br><br>
+			<div class="tab-content" id="nav-tabContent">
+			  <div class="tab-pane fade show active" id="uk-list" role="tabpanel" aria-labelledby="nav-home-tab">
+			  	<table class="table">
+					<thead>
+						<th>순위</th><th>팀</th><th>경기 수</th><th>승점</th><th>승</th><th>무</th><th>패</th>			
+					</thead>
+					<tbody>
+						<tr th:each="epl:${eplList}">	
+							<td class="rank"></td>
+							<td><img th:src="@{/img/{img}(img=${epl.logoImage})}" width="35px;">[[${epl.teamName}]]</td>
+							<td th:text="${epl.win}+${epl.tie}+${epl.defeat}"></td>
+							<td th:text="${epl.win}*3+${epl.tie}" style="color:red"></td>
+							<td th:text="${epl.win}"></td>
+							<td th:text="${epl.tie}"></td>
+							<td th:text="${epl.defeat}"></td>			
+						</tr>
+					</tbody>
+				</table>	
+			  </div>
+			  <div class="tab-pane fade" id="spain-list" role="tabpanel" aria-labelledby="nav-home-tab"> 
+			  	<table class="table">
+					<thead>
+						<th>순위</th><th>팀</th><th>경기 수</th><th>승점</th><th>승</th><th>무</th><th>패</th>			
+					</thead>
+					<tbody>
+						<tr th:each="laliga:${laligaList}">	
+							<td class="rank"></td>
+							<td ><img th:src="@{/img/{img}(img=${laliga.logoImage})}" width="35px;">[[${laliga.teamName}]]</td>
+							<td th:text="${laliga.win}+${laliga.tie}+${laliga.defeat}"></td>
+							<td th:text="${laliga.win}*3+${laliga.tie}" style="color:red"></td>
+							<td th:text="${laliga.win}"></td>
+							<td th:text="${laliga.tie}"></td>
+							<td th:text="${laliga.defeat}"></td>			
+						</tr>
+					</tbody>
+				</table>	
+			  </div>
+			   <div class="tab-pane fade" id="italia-list" role="tabpanel" aria-labelledby="nav-home-tab"> 
+			  	<table class="table">
+					<thead>
+						<th>순위</th><th>팀</th><th>경기 수</th><th>승점</th><th>승</th><th>무</th><th>패</th>			
+					</thead>
+					<tbody>
+						<tr th:each="serie:${serieList}">	
+							<td class="rank"></td>
+							<td><img th:src="@{/img/{img}(img=${serie.logoImage})}" width="35px;">[[${serie.teamName}]]</td>
+							<td th:text="${serie.win}+${serie.tie}+${serie.defeat}"></td>
+							<td th:text="${serie.win}*3+${serie.tie}" style="color:red"></td>
+							<td th:text="${serie.win}"></td>
+							<td th:text="${serie.tie}"></td>
+							<td th:text="${serie.defeat}"></td>			
+						</tr>
+					</tbody>
+				</table>
+			  </div>
+			   <div class="tab-pane fade" id="france-list" role="tabpanel" aria-labelledby="nav-home-tab"> 
+			  	<table class="table">
+					<thead>
+						<th>순위</th><th>팀</th><th>경기 수</th><th>승점</th><th>승</th><th>무</th><th>패</th>			
+					</thead>
+					<tbody>
+						<tr th:each="ang:${angList}">	
+							<td class="rank"></td>
+							<td><img th:src="@{/img/{img}(img=${ang.logoImage})}" width="35px;">[[${ang.teamName}]]</td>
+							<td th:text="${ang.win}+${ang.tie}+${ang.defeat}"></td>
+							<td th:text="${ang.win}*3+${ang.tie}" style="color:red"></td>
+							<td th:text="${ang.win}"></td>
+							<td th:text="${ang.tie}"></td>
+							<td th:text="${ang.defeat}"></td>			
+						</tr>
+					</tbody>
+				</table>
+			  </div>
+			  <div class="tab-pane fade" id="germany-list" role="tabpanel" aria-labelledby="nav-home-tab"> 
+			  	<table class="table">
+					<thead>
+						<th>순위</th><th>팀</th><th>경기 수</th><th>승점</th><th>승</th><th>무</th><th>패</th>			
+					</thead>
+					<tbody>
+						<tr th:each="bundes:${bundesList}">	
+							<td class="rank"></td>
+							<td><img th:src="@{/img/{img}(img=${bundes.logoImage})}" width="35px;">[[${bundes.teamName}]]</td>
+							<td th:text="${bundes.win}+${bundes.tie}+${bundes.defeat}" width="35px;"></td>
+							<td th:text="${bundes.win}*3+${bundes.tie}" style="color:red"></td>
+							<td th:text="${bundes.win}"></td>
+							<td th:text="${bundes.tie}"></td>
+							<td th:text="${bundes.defeat}"></td>			
+						</tr>
+					</tbody>
+				</table>
+			  </div>
+			</div>
+	</div>
+	</body>
+	<script>
+		function ranking(start){
+			var start= start;
+			var td_list= document.getElementsByClassName("rank");
+			for(var i=0; i<td_list.length; i++){
+				start++;
+				td_list[i].innerHTML="&nbsp"+start;
+				if(start==20){
+					start=0;
+				}
+			}
+		};
+		ranking(0);
+		
+		function confirm(){
+			alert("이전 시즌 순위 정보가 없습니다.");
+		}
+	</script>
+</html>
+

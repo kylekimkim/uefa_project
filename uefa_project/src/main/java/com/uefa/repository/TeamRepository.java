@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
+import com.uefa.vo.Team2223Vo;
 import com.uefa.vo.TeamVo;
 
 
@@ -23,5 +24,8 @@ public interface TeamRepository extends CrudRepository<TeamVo, Integer>{
 	
 	@Query("SELECT team from TeamVo team where team.teamNum=?1")
 	public Iterable<TeamVo> modifyTeam(@Param("teamNum") int teamNum);
+	
+	@Query("SELECT team.logoImage from TeamVo team where team.teamNum=?1")
+	public String myteamLogo(@Param("teamNum") int teamNum);
 	
 }

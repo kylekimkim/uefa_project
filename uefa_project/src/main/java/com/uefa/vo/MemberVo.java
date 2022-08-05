@@ -21,6 +21,7 @@ public class MemberVo {
 	private String address;
 	private String address_detail;
 	@Column(nullable = true, insertable = false, updatable = false)
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
 	private Date signup_time;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date birth;

@@ -1,0 +1,80 @@
+<html lang="en" xmlns:th="http:/www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+	</head>
+	<style>
+	.match{
+		margin :10px;	
+	}
+	td{
+		width:250px;
+		padding:8px;
+	}
+	.match_list{
+		border-radius:20px;
+		display:flex;
+		text-align:center;
+		padding:20px;	
+		align-items:center;	
+	}
+	</style>
+	<body>
+		<header th:insert="header_nav.html"></header>
+		<div th:each="modify:${team}" class="container">		
+			<br><br>
+			<h2>[[${modify.teamName}]]</h2>
+			<br><br>
+			<div>
+				<h3>관련 기사<h3>
+			</div>
+			<div  class="match_list">
+			<div style="margin:auto;">
+				<h3>지난 경기 일정<h3>
+				<div class="match">
+					<table  th:each="my:${myteam}" style="border:none;">
+						<tbody>
+							<tr>	
+								<td>[[${#dates.format(my.matchDate,'MM-dd')}]] &nbsp; [[${my.matchTime}]]</td>
+								
+							</tr>
+							<tr>
+								<td><img th:src="@{/img/{img}(img=${my.homeLogo})}">[[${my.homeTeam}]]</td>
+								<td><strong> [[${my.homeScore}]]</strong></td>
+							</tr>
+							<tr>	
+								<td><img th:src="@{/img/{img}(img=${my.awayLogo})}">[[${my.awayTeam}]]</td>	
+								<td><strong>[[${my.awayScore}]]</strong></td>	
+							</tr>
+						</tbody>
+						<hr>
+					</table>	
+				</div>
+				
+			</div>
+			<br><br>
+			<div style="margin:auto;">
+				<h3>다음 경기 일정</h3>
+				<div class="match">
+					<table  th:each="my2223:${myteam2223}" style="border:none;">
+						<tbody>
+							<tr>	
+								<td>[[${#dates.format(my2223.matchDate,'MM-dd')}]] &nbsp; [[${my2223.matchTime}]]</td>
+								
+							</tr>
+							<tr>
+								<td><img th:src="@{/img/{img}(img=${my2223.homeLogo})}">[[${my2223.homeTeam}]]</td>
+								<td><strong> [[${my2223.homeScore}]]</strong></td>
+							</tr>
+							<tr>	
+								<td><img th:src="@{/img/{img}(img=${my2223.awayLogo})}">[[${my2223.awayTeam}]]</td>	
+								<td><strong>[[${my2223.awayScore}]]</strong></td>	
+							</tr>
+						</tbody>
+						<hr>
+					</table>	
+				</div>
+			</div>	
+			</div>	
+		</div>
+	</body>
+</html>

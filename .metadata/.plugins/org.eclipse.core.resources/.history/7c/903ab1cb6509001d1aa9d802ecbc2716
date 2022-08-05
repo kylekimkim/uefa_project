@@ -1,0 +1,101 @@
+<html lang="en" xmlns:th="http:/www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+	</head>
+	<style>
+	.hot_team{
+		margin:20px;
+		text-align:center;
+		margin:auto;
+	}
+	.hot_team_logo{
+		display:block;
+		width:100px;
+		height:100px;
+	}
+	.team_btn{
+		background-color:white;
+		border-radius:20px;
+		border:none;
+		
+	}
+	.team_list{
+		border-radius:20px;
+		display:flex;
+		text-align:center;
+		padding:20px;		
+	}
+	</style>
+	<body>
+		<header th:insert="header_nav.html"></header>
+		<div th:each="modify:${member}" class="container">
+			<br><br><br>
+			<h3>팀을 선택하세요</h3>
+			<form th:action="@{select}" method="post" name="update">
+	  			<p class="input-group" hidden>
+				  <input name="id" type="text" class="form-control" th:value="${modify.id}" readonly>
+				  <input name="pw" type="text" class="form-control" th:value="${modify.pw}" readonly>
+				  <input name="name" type="text" class="form-control" th:value="${modify.name}" readonly>
+				  <input name="phone" type="text" class="form-control" th:value="${modify.phone}" readonly>
+				  <input name="email" type="text" class="form-control" th:value="${modify.email}" readonly>
+				  <input name="address" type="text" class="form-control" th:value="${modify.address}" readonly>
+				  <input name="address_detail" type="text" class="form-control" th:value="${modify.address_detail}" readonly>
+				  <input name="birth" type="date" class="form-control" th:value="${#dates.format(modify.birth,'yyyy-MM-dd')}" readonly>
+				  <input name="signup_time" type="date" class="form-control" th:value="${#dates.format(modify.signup_time,'yyyy-MM-dd HH:mm')}" readonly>
+				  <input name="grade" type="text" class="form-control" th:value="${modify.grade}" readonly>
+				  <input name="myteam" id="teamNum" type="number" class="form-control" readonly>
+		  		  <button class="btn btn-outline-primary" type="submit" id="submitMyTeam">수정</button>
+	  			</p>		
+			</form>
+			
+			<div class="team_list">
+				<div class="hot_team">
+					<button class="team_btn" onclick="mancity()"><img class="hot_team_logo" src="/img/mancity.png">맨체스터 시티</button>
+				</div>
+				<div class="hot_team">
+					<button class="team_btn" onclick="liverpool()"><img class="hot_team_logo" src="/img/liverpool.png">리버풀</button>
+				</div>
+				<div class="hot_team">
+					<button class="team_btn" onclick="chelsea()"><img class="hot_team_logo" src="/img/chelsea.png">첼시</button>
+				</div>
+				<div class="hot_team">
+					<button class="team_btn" onclick="arsenal()"><img class="hot_team_logo" src="/img/arsnal.png">아스날</button>
+				</div>
+				<div class="hot_team">
+					<button class="team_btn" onclick="tott()"><img class="hot_team_logo" src="/img/tottenham.png">토트넘</button>
+				</div>
+				<div class="hot_team">
+					<button class="team_btn" onclick="manuni()"><img class="hot_team_logo" src="/img/manunited.png">맨유</button>
+				</div>
+				<div class="hot_team">
+					<button class="team_btn" onclick="real()"><img class="hot_team_logo" src="/img/realmadrid.png">레알 마드리드</button>
+				</div>
+			</div>
+			<div class="team_list">
+				<div class="hot_team">
+					<button class="team_btn" onclick="barcel()"><img class="hot_team_logo" src="/img/barcelona.png">바르셀로나</button>
+				</div>
+				<div class="hot_team">
+					<button class="team_btn" onclick="munich()"><img class="hot_team_logo" src="/img/munich.png">바이에른 뮌헨</button>
+				</div>
+				<div class="hot_team">
+					<button class="team_btn" onclick="dort()"><img class="hot_team_logo" src="/img/dortmund.png">도르트문트</button>
+				</div>
+
+				<div class="hot_team">
+					<button class="team_btn" onclick="ac()"><img class="hot_team_logo" src="/img/acmilan.png">AC 밀란</button>
+				</div>
+				<div class="hot_team">
+					<button class="team_btn" onclick="inter()"><img class="hot_team_logo" src="/img/intermilan.png">인터 밀란</button>
+				</div>
+				<div class="hot_team">
+					<button class="team_btn" onclick="juven()"><img class="hot_team_logo" src="/img/juventus.png">유벤투스</button>
+				</div>
+				<div class="hot_team">
+					<button class="team_btn" onclick="paris()"><img class="hot_team_logo" src="/img/paris.png">파리 생제르맹</button>
+				</div>
+			</div>
+		</div>
+		<script src="/js/teamSelect.js"></script>
+	</body>
+</html>

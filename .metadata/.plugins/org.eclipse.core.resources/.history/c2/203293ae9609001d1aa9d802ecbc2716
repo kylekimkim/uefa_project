@@ -1,0 +1,62 @@
+<html lang="ko" xmlns:th="http:/www.thymeleaf.org">
+
+	<head>
+		<meta charset="UTF-8">
+	</head>
+	<style>	
+		body{
+			background-image:url('/img/back.jpg');
+			background-size:cover;
+		}
+		.logo{
+			width:100px;
+			background-color: white;
+			border-radius:50px; 
+			padding:5px;
+		}
+		.menuList{
+		border-radius:20px;
+		display:flex;
+		text-align:center;
+		padding:20px;	
+		}
+		.menuItem{
+			width:200px;
+			border:1px solid;
+			color:white;
+			margin:20px;
+			text-align:center;
+			margin:auto;
+		}
+		.menuBtn{
+			width:200px;
+			color:white;
+			border:none;
+			background-color: transparent;
+			padding:10px;
+		}
+		.menuItem:hover{
+			box-shadow:2px 2px 5px white;
+			font-size:larger;
+		}
+	</style>
+	<body>
+		<header th:insert="header_nav.html"></header>
+		<div class="container">
+			<h1 style="color:white; margin:20px; font-family:'Mochiy Pop One', sans-serif;"><img class="logo" src="/img/logo.png" alt="league_image"> &nbsp;EUROPE  FOOTBALL  LEAGUE</h1>	
+		</div>
+		<br><br><br><br><br>
+		<div class="menuList">
+			<div class="menuItem">
+				<button class="menuBtn" onclick="'#'">최신 기사</button>
+			</div>
+			<div class="menuItem">
+				<button class="menuBtn" id="dropdown_btn slide-y" onclick="location.href='/match/2223/list.do'">경기 일정</button>
+			</div>
+			<div class="menuItem">
+				<button class="menuBtn" onclick="location.href='/team/rank.do'">리그별 순위</button>
+			</div>
+			
+		<div>
+	</body>
+</html>

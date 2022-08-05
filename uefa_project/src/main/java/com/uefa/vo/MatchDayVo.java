@@ -36,6 +36,23 @@ public class MatchDayVo {
 	@Column(name="league_num")
 	private Integer leagueNum;
 	private String season;
+	@Column(name="home_num")
+	private Integer homeNum;
+	@Column(name="away_num")
+	private Integer awayNum;
+	
+	public Integer getHomeNum() {
+		return homeNum;
+	}
+	public void setHomeNum(Integer homeNum) {
+		this.homeNum = homeNum;
+	}
+	public Integer getAwayNum() {
+		return awayNum;
+	}
+	public void setAwayNum(Integer awayNum) {
+		this.awayNum = awayNum;
+	}
 	public Integer getMatchNum() {
 		return matchNum;
 	}
@@ -107,11 +124,7 @@ public class MatchDayVo {
 		return "MatchDayVo [matchNum=" + matchNum + ", homeTeam=" + homeTeam + ", homeLogo=" + homeLogo + ", homeScore="
 				+ homeScore + ", awayTeam=" + awayTeam + ", awayLogo=" + awayLogo + ", awayScore=" + awayScore
 				+ ", matchDate=" + matchDate + ", matchTime=" + matchTime + ", leagueNum=" + leagueNum + ", season="
-				+ season + "]";
+				+ season + ", homeNum=" + homeNum + ", awayNum=" + awayNum + "]";
 	}
-	
-	
-	
-	
 	
 }

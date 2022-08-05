@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item key="selection" value="&lt;th&gt;관리&lt;/th&gt;"/>
+		<item key="wrap" value="true"/>
+		<item key="casesensitive" value="false"/>
+		<item key="wholeword" value="false"/>
+		<item key="incremental" value="false"/>
+		<item key="isRegEx" value="false"/>
+		<list key="findhistory">
+			<item value="&lt;th&gt;관리&lt;/th&gt;&lt;th&gt;관리&lt;/th&gt;"/>
+			<item value="&lt;th&gt;날짜&lt;/th&gt;"/>
+			<item value="&lt;th&gt;날짜&lt;th&gt;"/>
+			<item value="Logo})}&quot;"/>
+			<item value="logoImage})}&quot;"/>
+			<item value="logoImage})}"/>
+			<item value="/epl/"/>
+			<item value="/serie/"/>
+			<item value="/laliga/"/>
+			<item value="/bundes/"/>
+			<item value="/ang/"/>
+			<item value="/team/modify"/>
+			<item value="/admin/match/modify"/>
+			<item value="Match2223Date"/>
+			<item value="liver"/>
+		</list>
+		<list key="replacehistory">
+			<item value="&lt;th&gt;관리&lt;/th&gt;"/>
+			<item value="&lt;th&gt;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;16&quot; height=&quot;16&quot; fill=&quot;currentColor&quot; class=&quot;bi bi-calendar-event&quot; viewBox=&quot;0 0 16 16&quot;&gt;"/>
+			<item value="Logo})}&quot; width=&quot;35px;&quot;"/>
+			<item value="Logo})}&quot; width=&quot;35px;"/>
+			<item value="Logo})}&quot; width=&quot;35px&quot;;"/>
+			<item value="logoImage})}&quot; width=&quot;35px;&quot;"/>
+			<item value="logoImage})}&quot; width=&quot;35px;"/>
+			<item value="/"/>
+			<item value="/team/2223/modify"/>
+			<item value="/admin/match/2223/modify"/>
+			<item value="@Query(&quot;SELECT match from MatchDayVo match whe"/>
+			<item value="/admin/match/2122/modify"/>
+			<item value="MatchDate"/>
+			<item value="my"/>
+			<item value="liver"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="-52"/>
+		<item key="DIALOG_Y_ORIGIN" value="173"/>
+		<item key="DIALOG_WIDTH" value="322"/>
+		<item key="DIALOG_HEIGHT" value="391"/>
+		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
+	</section>
+</section>

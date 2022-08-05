@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.Query"/>
+    <fullyQualifiedTypeName name="org.springframework.data.repository.query.Param"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="com.uefa.service.TeamService"/>
+    <fullyQualifiedTypeName name="com.uefa.mapper.TeamMapper"/>
+    <fullyQualifiedTypeName name="javax.transaction.Transactional"/>
+    <fullyQualifiedTypeName name="org.springframework.transaction.annotation.Transactional"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
+    <fullyQualifiedTypeName name="com.uefa.repository.TeamRepository"/>
+    <fullyQualifiedTypeName name="com.uefa.vo.TeamVo"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ModelAttribute"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.web.servlet.mvc.support.RedirectAttributes"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
+    <fullyQualifiedTypeName name="org.springframework.web.servlet.ModelAndView"/>
+    <fullyQualifiedTypeName name="java.util.Optional"/>
+    <fullyQualifiedTypeName name="javax.annotation.Generated"/>
+    <fullyQualifiedTypeName name="javax.persistence.GeneratedValue"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
+    <fullyQualifiedTypeName name="org.springframework.format.annotation.DateTimeFormat"/>
+    <fullyQualifiedTypeName name="com.uefa.repository.MatchDayRepository"/>
+    <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
+    <fullyQualifiedTypeName name="com.uefa.vo.MatchDayVo"/>
+    <fullyQualifiedTypeName name="com.uefa.vo.MemberVo"/>
+    <fullyQualifiedTypeName name="com.uefa.vo.MatchDay2223Vo"/>
+    <fullyQualifiedTypeName name="com.uefa.repository.MatchDay2223Repository"/>
+    <fullyQualifiedTypeName name="com.uefa.vo.Team2223Vo"/>
+    <fullyQualifiedTypeName name="com.uefa.repository.Team2223Repository"/>
+</qualifiedTypeNameHistroy>

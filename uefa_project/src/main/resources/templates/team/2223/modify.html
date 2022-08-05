@@ -1,0 +1,58 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+	</head>
+
+	
+	<body>
+	<header th:insert="header_nav.html"></header>
+	<div th:each="modify:${team}" class="container">
+	<h1>경기 결과 관리</h1>
+			<form th:action="@{update}" method="post" name="update">
+	  			<p class="input-group"hidden>
+				  <label class="input-group-text">팀 번호</label>
+				  <input name="teamNum" type="number" class="form-control" th:value="${modify.teamNum}" readonly>
+				</p>
+		  		<p class="input-group">
+				  <label class="input-group-text">팀 이름</label>
+				  <input name="teamName" type="text" class="form-control" th:value="${modify.teamName}" readonly>
+				</p>
+				<p class="input-group" hidden>
+				  <label class="input-group-text">팀 사진</label>
+				  <input name="logoImage" type="text" class="form-control" th:value="${modify.logoImage}" readonly>
+				</p>
+				<p class="input-group">
+				  <label class="input-group-text">소속 리그</label>
+				  <select name="leagueNum" class="form-control" th:value="${modify.leagueNum}" readonly>		  	
+				  	<option th:selected="${modify.leagueNum}=='1'" value="1">프리미어리그</option>
+				  	<option th:selected="${modify.leagueNum}=='2'" value="2">라리가</option>
+				  	<option th:selected="${modify.leagueNum}=='3'" value="3">분데스리가</option>
+				  	<option th:selected="${modify.leagueNum}=='4'" value="4">세리에 A</option>
+				  	<option th:selected="${modify.leagueNum}=='5'" value="5">리그 앙</option>
+				  </select>
+				</p>
+				<p class="input-group">
+				 <label class="input-group-text">경기 수</label>
+				  <input name="matchCount" type="number" class="form-control" th:value="${modify.win}+${modify.tie}+${modify.defeat}" readonly>
+				  <label class="input-group-text">승점</label>
+				  <input name="victoryPoints" type="number" class="form-control" th:value="${modify.win}*3+${modify.tie}" readonly>
+				</p>
+				<p class="input-group">	
+				  <label class="input-group-text">승리</label>
+				  <input name="win" type="number" class="form-control" th:value="${modify.win}">
+				
+				  <label class="input-group-text">무승부</label>
+				  <input name="tie" type="number" class="form-control" th:value="${modify.tie}">		
+				
+				  <label class="input-group-text">패배</label>
+				  <input name="defeat" type="number" class="form-control" th:value="${modify.defeat}">
+				</p>
+				  <span>*경기 수, 승점은 자동 변동됩니다.</span>
+				<p class="d-grid gap-2 d-md-flex justify-content-md-end">
+		  			<button class="btn btn-outline-primary" type="submit">수정</button>
+		  		</p>
+		</form>
+	</div>
+	</body>
+
+</html>

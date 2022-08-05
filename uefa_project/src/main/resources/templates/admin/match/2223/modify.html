@@ -1,0 +1,48 @@
+<html lang="en" xmlns:th="http:/www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+	</head>
+	<body class="admin">
+		<header th:insert="header_nav.html"></header>
+		<div th:each="modify:${match}" class="container">
+			
+			<h1 style="color:white;">경기 일정 수정</h1>
+			<form th:action="@{update}" method="post" name="update">
+				<p class="input-group" style="width:22%">
+					  <label class="input-group-text">시즌</label>
+					  <input name="season" type="text"  class="form-control" th:value="${modify.season}" readonly>
+				</p>
+				<p class="input-group" hidden>
+				  	<input name="matchNum" type="number" class="form-control" th:value="${modify.matchNum}" readonly>
+				  	<input name="homeNum" type="number" class="form-control" th:value="${modify.homeNum}" readonly>
+				  	<input name="awayNum" type="number" class="form-control" th:value="${modify.awayNum}" readonly>
+					<input name="homeLogo" type="text" class="form-control" th:value="${modify.homeLogo}">
+					<input name="awayLogo" type="text" class="form-control" th:value="${modify.awayLogo}">
+					<input name="leagueNum" type="number" class="form-control" th:value="${modify.leagueNum}">
+				</p>
+				<p class="input-group">
+					<label class="input-group-text">홈</label>
+					<input name="homeTeam" type="text" class="form-control" th:value="${modify.homeTeam}" readonly>
+					<label class="input-group-text">원정</label>
+					<input name="awayTeam" type="text" class="form-control" th:value="${modify.awayTeam}" readonly>
+				</p>
+				<p class="input-group">
+					<label class="input-group-text">경기 날짜</label>
+					<input name="matchDate" type="date" class="form-control" th:value="${#dates.format(modify.matchDate,'yyyy-MM-dd')}">
+				</p>
+				<p class="input-group">
+					<label class="input-group-text">경기 시간</label>
+					<input name="matchTime" type="time" class="form-control" th:value="${modify.matchTime}">
+				</p>
+				<p class="input-group">
+					<label class="input-group-text">경기 결과</label>
+					<input name="homeScore" type="number" class="form-control" th:value="${modify.homeScore}">
+					<input name="awayScore" type="number" class="form-control" th:value="${modify.awayScore}">
+				</p>
+				<p class="d-grid gap-2 d-md-flex justify-content-md-end">
+		  			<button class="btn btn-primary" type="submit">수정</button>
+		  		</p>
+			</form>
+		</div>
+	</body>
+</html>
