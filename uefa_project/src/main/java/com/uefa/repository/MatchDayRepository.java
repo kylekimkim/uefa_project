@@ -31,16 +31,7 @@ public interface MatchDayRepository extends CrudRepository<MatchDayVo, Integer>{
 	@Query("SELECT matchday from MatchDayVo matchday where matchday.leagueNum=?1 and month(matchDate)='05' order by matchDate asc, matchTime asc")
 	public Iterable<MatchDayVo> MayMatchByOrderByMatchDateDesc(Integer leagueNum);
 	
-	
-	
 	@Query("SELECT match from MatchDayVo match where match.matchNum=?1")
 	public Iterable<MatchDayVo> modifyMatch(@Param("matchNum") int matchNum);
-	
-	
-	
-	@Query(nativeQuery=true,value="SELECT * from MatchDay m where m.home_num=?1 or m.away_num=?1 order by match_date desc limit 3")
-	public Iterable<MatchDayVo> matchMyteam(@Param("teamNum") int teamNum);
-	
-	
 	
 }

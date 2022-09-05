@@ -20,7 +20,15 @@ public class TeamVo {
 	private Integer win;
 	private Integer tie;
 	private Integer defeat;
+	private Integer diffscore;
 	
+	
+	public Integer getDiffscore() {
+		return diffscore;
+	}
+	public void setDiffscore(Integer diffscore) {
+		this.diffscore = diffscore;
+	}
 	public Integer getTeamNum() {
 		return teamNum;
 	}

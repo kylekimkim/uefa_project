@@ -35,6 +35,11 @@ public interface MatchDay2223Repository extends CrudRepository<MatchDay2223Vo, I
 	@Query("SELECT match from MatchDay2223Vo match where match.matchNum=?1")
 	public Iterable<MatchDay2223Vo> modifyMatch2223(@Param("matchNum") int matchNum);
 	
-	@Query(nativeQuery=true,value="SELECT * from MatchDay_2223 m where m.home_num=?1 or m.away_num=?1 order by match_date asc limit 3")
-	public Iterable<MatchDay2223Vo> matchMyteam2223(@Param("teamNum") int teamNum);
+	@Query(nativeQuery=true,value="SELECT * from MatchDay_2223 m where (m.home_num=?1 or m.away_num=?1) and match_date>now() order by match_date asc limit 3")
+	public Iterable<MatchDay2223Vo> nextMatch(@Param("teamNum") int teamNum);
+	
+	@Query(nativeQuery=true,value="SELECT * from MatchDay_2223 m where (m.home_num=?1 or m.away_num=?1) and match_date<now() order by match_date asc limit 3")
+	public Iterable<MatchDay2223Vo> preMatch(@Param("teamNum") int teamNum);
 }
+	
+

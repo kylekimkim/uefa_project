@@ -18,17 +18,21 @@ public class MemberVo {
 	private String name;
 	private String phone;
 	private String email;
-	private String address;
-	private String address_detail;
-	@Column(nullable = true, insertable = false, updatable = false)
+	@Column(name="signup_time",nullable = true, insertable = false, updatable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
-	private Date signup_time;
+	private Date signupTime;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date birth;
 	private byte grade;
 	private String myteam;
 	public String getId() {
 		return id;
+	}
+	public Date getSignupTime() {
+		return signupTime;
+	}
+	public void setSignupTime(Date signupTime) {
+		this.signupTime = signupTime;
 	}
 	public void setId(String id) {
 		this.id = id;
@@ -57,24 +61,7 @@ public class MemberVo {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
-		this.address = address;
-	}
-	public String getAddress_detail() {
-		return address_detail;
-	}
-	public void setAddress_detail(String address_detail) {
-		this.address_detail = address_detail;
-	}
-	public Date getSignup_time() {
-		return signup_time;
-	}
-	public void setSignup_time(Date signup_time) {
-		this.signup_time = signup_time;
-	}
+
 	public Date getBirth() {
 		return birth;
 	}
@@ -93,13 +80,11 @@ public class MemberVo {
 	public void setMyteam(String myteam) {
 		this.myteam = myteam;
 	}
+	
 	@Override
 	public String toString() {
-		return "MemberVo={\"id\":\"" + id + "\", \"pw\":\"" + pw + "\", \"name\":\"" + name + "\", \"phone\":\"" + phone
-				+ "\", \"email\":\"" + email + "\", \"address\":\"" + address + "\", \"address_detail\":\""
-				+ address_detail + "\", \"signup_time\":\"" + signup_time + "\", \"birth\":\"" + birth
-				+ "\", \"grade\":\"" + grade + "\", \"myteam\":\"" + myteam + "\"}";
+		return "MemberVo [id=" + id + ", pw=" + pw + ", name=" + name + ", phone=" + phone + ", email=" + email
+				+ ", signupTime=" + signupTime + ", birth=" + birth + ", grade=" + grade + ", myteam=" + myteam + "]";
 	}
-	
 	
 }

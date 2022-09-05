@@ -5,9 +5,11 @@
 	<body class="admin">
 		<header th:insert="header_nav.html"></header>
 		<div th:each="modify:${match}" class="container">
-			
+			<br><br>
 			<h1 style="color:white;">경기 일정 수정</h1>
+			<br><br>
 			<form th:action="@{update}" method="post" name="update">
+				
 				<p class="input-group" style="width:22%">
 					  <label class="input-group-text">시즌</label>
 					  <input name="season" type="text"  class="form-control" th:value="${modify.season}" readonly>

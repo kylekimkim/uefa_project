@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.uefa.repository.MatchDay2223Repository;
 import com.uefa.repository.MatchDayRepository;
 import com.uefa.repository.MemberRepository;
+import com.uefa.repository.NewsRepository;
 import com.uefa.repository.Team2223Repository;
 import com.uefa.repository.TeamRepository;
 import com.uefa.vo.MemberVo;
@@ -33,6 +34,8 @@ public class TeamController {
 	MatchDayRepository mdr;
 	@Autowired
 	MatchDay2223Repository mdr2;
+	@Autowired
+	 NewsRepository nr;
 		
 	@GetMapping("/list.do")
 	public String list(Model model) {	
@@ -105,8 +108,7 @@ public class TeamController {
 			return "redirect:/team/list.do";			
 		}else {
 			return "redirect:/team/modify";
-		}
-		
+		}	
 	}
 	@PostMapping("/2223/update")
 	public String update(Team2223Vo teamVo, HttpSession session) {
@@ -127,12 +129,29 @@ public class TeamController {
 		
 	}
 	@GetMapping("/myteam")
-	public String myteam(Model model,int teamNum) {
+	public String myteam(Model model,int teamNum,Team2223Vo team) {
 
 		model.addAttribute("team",tr.modifyTeam(teamNum));
 		model.addAttribute("logo",tr.myteamLogo(teamNum));
-		model.addAttribute("myteam",mdr.matchMyteam(teamNum));
-		model.addAttribute("myteam2223",mdr2.matchMyteam2223(teamNum));
+		model.addAttribute("myteam",mdr2.preMatch(teamNum));
+		model.addAttribute("myteam2223",mdr2.nextMatch(teamNum));
+		model.addAttribute("news",nr.relevantNews(teamNum));
+		if(tr2.myteamLeagueNum(teamNum)==1) {	
+			model.addAttribute("rank",tr2.eplRanking(teamNum));
+		}
+		if(tr2.myteamLeagueNum(teamNum)==2) {	
+			model.addAttribute("rank",tr2.laligaRanking(teamNum));
+		}
+		if(tr2.myteamLeagueNum(teamNum)==3) {	
+			model.addAttribute("rank",tr2.bundesRanking(teamNum));
+		}
+		if(tr2.myteamLeagueNum(teamNum)==4) {	
+			model.addAttribute("rank",tr2.serieRanking(teamNum));
+		}
+		if(tr2.myteamLeagueNum(teamNum)==5) {	
+			model.addAttribute("rank",tr2.angRanking(teamNum));
+		}
+		System.out.println(team.getLeagueNum());
 		return "/team/myteam";	
 	}
 	@GetMapping("/select")
@@ -150,12 +169,13 @@ public class TeamController {
 				MemberVo updateMem=mr.save(memVo);
 				if(updateMem!=null) {
 					update=true;
+					session.setAttribute("memVo", updateMem);
 				}	
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 		if(update) {
-			return "redirect:/mem/logout";			
+			return "redirect:/";			
 		}else {
 			return "redirect:/";
 		}

@@ -33,17 +33,15 @@
 			<h3>팀을 선택하세요</h3>
 			<form th:action="@{select}" method="post" name="update">
 	  			<p class="input-group" hidden>
-				  <input name="id" type="text" class="form-control" th:value="${modify.id}" readonly>
-				  <input name="pw" type="text" class="form-control" th:value="${modify.pw}" readonly>
-				  <input name="name" type="text" class="form-control" th:value="${modify.name}" readonly>
-				  <input name="phone" type="text" class="form-control" th:value="${modify.phone}" readonly>
-				  <input name="email" type="text" class="form-control" th:value="${modify.email}" readonly>
-				  <input name="address" type="text" class="form-control" th:value="${modify.address}" readonly>
-				  <input name="address_detail" type="text" class="form-control" th:value="${modify.address_detail}" readonly>
-				  <input name="birth" type="date" class="form-control" th:value="${#dates.format(modify.birth,'yyyy-MM-dd')}" readonly>
-				  <input name="signup_time" type="date" class="form-control" th:value="${#dates.format(modify.signup_time,'yyyy-MM-dd HH:mm')}" readonly>
-				  <input name="grade" type="text" class="form-control" th:value="${modify.grade}" readonly>
-				  <input name="myteam" id="teamNum" type="number" class="form-control" readonly>
+				  <input name="id" type="text" class="form-control" th:value="${modify.id}">
+				  <input name="pw" type="text" class="form-control" th:value="${modify.pw}">
+				  <input name="name" type="text" class="form-control" th:value="${modify.name}">
+				  <input name="phone" type="text" class="form-control" th:value="${modify.phone}">
+				  <input name="email" type="text" class="form-control" th:value="${modify.email}">
+				  <input name="birth" type="date" class="form-control" th:value="${#dates.format(modify.birth,'yyyy-MM-dd')}">
+				  <input name="signup_time" type="date" class="form-control" th:value="${#dates.format(modify.signupTime,'yyyy-MM-dd HH:mm')}">
+				  <input name="grade" type="text" class="form-control" th:value="${modify.grade}">
+				  <input name="myteam" id="teamNum" type="number" class="form-control">
 		  		  <button class="btn btn-outline-primary" type="submit" id="submitMyTeam">수정</button>
 	  			</p>		
 			</form>
@@ -95,6 +93,12 @@
 					<button class="team_btn" onclick="paris()"><img class="hot_team_logo" src="/img/paris.png">파리 생제르맹</button>
 				</div>
 			</div>
+			<br>
+			<center>
+				<svg xmlns="http://www.w3.org/2000/svg"  width="20" height="20" fill="currentColor" class="bi bi-lightbulb" viewBox="0 0 16 16">
+				  <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1z"/>
+				</svg>&nbsp;Myteam을 설정하시면 해당 팀 관련 정보를 빠르게 알아 보실 수 있습니다.
+			</center>
 		</div>
 		<script src="/js/teamSelect.js"></script>
 	</body>

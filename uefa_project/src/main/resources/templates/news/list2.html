@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>뉴스 리스트</title>
+	</head>
+	<style>
+		li{
+			display:flex;	
+		}
+		.addNews{
+			color:white;
+			background-color:rgb(0, 128, 255);
+			padding:5px;
+			border:none;
+			border-radius:30px;
+			float:right;
+		}
+	</style>
+	<body>
+		<header th:insert="/header_nav.html"></header>
+		<div class="container">
+			<br>
+			<h1>최신 뉴스</h1>
+			<br>
+			<a href="/news/list/1" style="text-decoration: none; color: gray">최신순</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" style="text-decoration: none; color:blue;"><strong>인기순</strong></a>
+		   	 <ul th:each="news:${newsList}">
+		   	 	<li>
+		   	 		<div style="padding:10px;">
+		   	 			<img th:src="@{/img/news/{img}(img=${news.mainImg})}" width="150px;">
+		   	 		</div>
+		   	 		<div style="padding:10px;">
+			   	 		<a th:href="@{/news/modify(news_num=${news.news_num})}" style="text-decoration: none; font-size:x-large;">[[${news.title}]]</a>	
+						<div>
+							<p th:text="${news.context}" style="line-height: 19px; color:gray; width:75%; height:55px; overflow:hidden;word-wrap:break-word;"></p>
+							<label th:text="${news.source}"></label>&nbsp;&nbsp;	
+							<label th:text="${#dates.format(news.postTime,'yyyy-MM-dd HH:mm:ss')}" style=" color:gray;"></label>
+							<p style="color:gray; float:right;">조회수: [[${news.view}]]</p>
+			   	 		</div>
+		   	 		</div>
+	   	 		</li>
+			</ul>
+			<div th:with="totalPages=${newsList.totalPages}, 
+							nowPage=${newsList.number+1}, 
+							hasNext=${newsList.hasNext}, 
+							hasPrev=${newsList.hasPrevious},
+							startPage=${((nowPage-3)<=0)?1:nowPage-3},
+							endPage=${((nowPage+3)>=totalPages)?totalPages:nowPage+3	
+							}
+							">
+				<nav th:insert="/pagination.html"></nav>					
+			</div>
+		</div>
+	</body>
+</html>

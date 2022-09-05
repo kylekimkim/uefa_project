@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+		<title>뉴스</title>
+	</head>
+	<style>
+		.postdate{
+			color:gray; 
+			margin-right:50px;
+		}
+		.original{
+			text-decoration:none;
+			color:black;
+			padding:5px;
+			margin-left:50px;
+			border:1px solid;
+			background-color:white;
+			font-size:small;
+		}
+		.provider{
+			border:1px solid;
+			padding:5px;
+			margin:20px;
+		}
+		li{
+			display:flex;	
+		}
+		.other{
+			border:1px solid;
+			padding:10px;
+			margin:20px;
+		}
+	    .wrap textarea {
+	      width: 100%;
+	      resize: none;
+	      overflow-y: hidden; /* prevents scroll bar flash */
+	      padding: 1.1em; /* prevents text jump on Enter keypress */
+	      padding-bottom: 0.2em;
+	      line-height: 1.6;
+	      border:none;
+	    }
+	</style>
+	<body>
+		<header th:insert="/header_nav.html"></header>
+		<div th:each="modify:${news}" class="container">
+			<br><br>
+			<center>
+				<h3>[[${modify.title}]]</h3>
+				<br>		
+				<label class="postdate">기사 입력 시간: [[${#dates.format(modify.postTime,'yyyy-MM-dd HH:mm:ss')}]]</label>
+				<a class="original" th:href="@{${modify.originalLink}}">기사 원문 보러가기</a>
+				<hr><br>
+				<img th:src="@{/img/news/{img}(img=${modify.mainImg})}">
+				<br><br><br><br>
+			</center>
+			<div class="wrap">
+				<textarea th:text="${modify.context}" readonly></textarea>
+			</div>
+			<div class="provider">
+				<b>기사제공</b><br><br>
+				<p>[[${modify.source}]] </p>
+				
+				<p>[[${modify.reporter}]] 기자</p>
+				<label>Copyright ⓒ [[${modify.source}]] All rights reserved. 무단 전재 및 재배포 금지.</label>
+			</div>
+			<div class="other">
+				<b>다른 기사 보러가기</b><br><br>
+			   	 <ul th:each="news:${newsList}" th:if="${news.news_num != modify.news_num}">
+			   	 	<li>
+			   	 		<div style="padding:5px;">
+			   	 			<img th:src="@{/img/news/{img}(img=${news.mainImg})}" width="75px;">
+			   	 		</div>
+			   	 		<div style="padding:10px;">
+				   	 		<a th:href="@{/news/modify(news_num=${news.news_num})}" style="text-decoration: none; font-size:x-large;">[[${news.title}]]</a>			
+							<div>
+								<label th:text="${news.source}"></label>&nbsp;&nbsp;	
+								<label th:text="${#dates.format(news.postTime,'yyyy-MM-dd HH:mm:ss')}" style=" color:gray;"></label>
+							</div>
+			   	 		</div>
+		   	 		</li>
+				</ul>
+			</div>
+		</div>
+	</body>
+	 <script>
+	    $(document).ready(function() {
+	      $('.wrap').on( 'keyup', 'textarea', function (e){
+	        $(this).css('height', 'auto' );
+	        $(this).height( this.scrollHeight );
+	      });
+	      $('.wrap').find( 'textarea' ).keyup();
+	    });
+	  </script>
+</html>

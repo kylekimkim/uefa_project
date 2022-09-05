@@ -6,7 +6,7 @@
 	<body>
 		<ul class="pagination justify-content-center">
 		    <li th:classappend=${!hasPrev}?'disabled' class="page-item">
-		      <a class="page-link" th:href="@{./{page}(page=${nowPage-1})}" tabindex="-1">Previous</a>
+		      <a class="page-link" th:href="@{./{page}(page=${nowPage-1})}" tabindex="-1">이전</a>
 		    </li>
 		    <th:block th:each="page: ${#numbers.sequence(startPage,endPage)}">
 										
@@ -15,7 +15,7 @@
 		    	</li>
 		    </th:block>
 		    <li th:classappend="${!hasNext}?'disabled'" class="page-item">
-		      <a class="page-link" th:href="@{./{page}(page=${nowPage+1})}">Next</a>
+		      <a class="page-link" th:href="@{./{page}(page=${nowPage+1})}">다음</a>
 		    </li>
 		  </ul>
 		

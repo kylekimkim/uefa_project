@@ -27,6 +27,7 @@
 	<body class="admin">
 		<header th:insert="header_nav.html"></header>
 		<div class="container">
+			<br><br>
 			<h1 style="color:white;">Team 순위 관리 </h1>
 			<div class="season">
 					<button class="move" type="submit" onclick="location.href='/team/list.do'">
@@ -56,7 +57,7 @@
 			  <div class="tab-pane fade show active" id="uk-list" role="tabpanel" aria-labelledby="nav-home-tab">
 			  	<table class="table">
 					<thead>
-						<th>순위</th><th>팀</th><th>경기 수</th><th>승점</th><th>승</th><th>무</th><th>패</th>	<th>팀 관리</th>		
+						<th>순위</th><th>팀</th><th>경기 수</th><th>승점</th><th>승</th><th>무</th><th>패</th><th>득실차</th><th>팀 관리</th>		
 					</thead>
 					<tbody>
 						<tr th:each="epl:${eplList}">	
@@ -66,7 +67,8 @@
 							<td th:text="${epl.win}*3+${epl.tie}" style="color:red"></td>
 							<td th:text="${epl.win}"></td>
 							<td th:text="${epl.tie}"></td>
-							<td th:text="${epl.defeat}"></td>	
+							<td th:text="${epl.defeat}"></td>
+							<td th:text="${epl.diffscore}"></td>	
 							<td><a th:href="@{/team/2223/modify(teamNum=${epl.teamNum})}">수정</a></td>		
 						</tr>
 					</tbody>
@@ -75,7 +77,7 @@
 			  <div class="tab-pane fade" id="spain-list" role="tabpanel" aria-labelledby="nav-home-tab"> 
 			  	<table class="table">
 					<thead>
-						<th>순위</th><th>팀</th><th>경기 수</th><th>승점</th><th>승</th><th>무</th><th>패</th>	<th>팀 관리</th>		
+						<th>순위</th><th>팀</th><th>경기 수</th><th>승점</th><th>승</th><th>무</th><th>패</th>	<th>득실차</th><th>팀 관리</th>		
 					</thead>
 					<tbody>
 						<tr th:each="laliga:${laligaList}">	
@@ -85,7 +87,8 @@
 							<td th:text="${laliga.win}*3+${laliga.tie}" style="color:red"></td>
 							<td th:text="${laliga.win}"></td>
 							<td th:text="${laliga.tie}"></td>
-							<td th:text="${laliga.defeat}"></td>	
+							<td th:text="${laliga.defeat}"></td>
+							<td th:text="${laliga.diffscore}"></td>	
 							<td><a th:href="@{/team/2223/modify(teamNum=${laliga.teamNum})}">수정</a></td>		
 						</tr>
 					</tbody>
@@ -94,7 +97,7 @@
 			   <div class="tab-pane fade" id="italia-list" role="tabpanel" aria-labelledby="nav-home-tab"> 
 			  	<table class="table">
 					<thead>
-						<th>순위</th><th>팀</th><th>경기 수</th><th>승점</th><th>승</th><th>무</th><th>패</th>	<th>팀 관리</th>		
+						<th>순위</th><th>팀</th><th>경기 수</th><th>승점</th><th>승</th><th>무</th><th>패</th>	<th>득실차</th><th>팀 관리</th>		
 					</thead>
 					<tbody>
 						<tr th:each="serie:${serieList}">	
@@ -105,6 +108,7 @@
 							<td th:text="${serie.win}"></td>
 							<td th:text="${serie.tie}"></td>
 							<td th:text="${serie.defeat}"></td>	
+							<td th:text="${serie.diffscore}"></td>
 							<td><a th:href="@{/team/2223/modify(teamNum=${serie.teamNum})}">수정</a></td>		
 						</tr>
 					</tbody>
@@ -113,7 +117,7 @@
 			   <div class="tab-pane fade" id="france-list" role="tabpanel" aria-labelledby="nav-home-tab"> 
 			  	<table class="table">
 					<thead>
-						<th>순위</th><th>팀</th><th>경기 수</th><th>승점</th><th>승</th><th>무</th><th>패</th>	<th>팀 관리</th>		
+						<th>순위</th><th>팀</th><th>경기 수</th><th>승점</th><th>승</th><th>무</th><th>패</th><th>득실차</th><th>팀 관리</th>		
 					</thead>
 					<tbody>
 						<tr th:each="ang:${angList}">	
@@ -124,6 +128,7 @@
 							<td th:text="${ang.win}"></td>
 							<td th:text="${ang.tie}"></td>
 							<td th:text="${ang.defeat}"></td>	
+							<td th:text="${ang.diffscore}"></td>
 							<td><a th:href="@{/team/2223/modify(teamNum=${ang.teamNum})}">수정</a></td>		
 						</tr>
 					</tbody>
@@ -132,7 +137,7 @@
 			  <div class="tab-pane fade" id="germany-list" role="tabpanel" aria-labelledby="nav-home-tab"> 
 			  	<table class="table">
 					<thead>
-						<th>순위</th><th>팀</th><th>경기 수</th><th>승점</th><th>승</th><th>무</th><th>패</th>	<th>팀 관리</th>		
+						<th>순위</th><th>팀</th><th>경기 수</th><th>승점</th><th>승</th><th>무</th><th>패</th><th>득실차</th><th>팀 관리</th>		
 					</thead>
 					<tbody>
 						<tr th:each="bundes:${bundesList}">	
@@ -143,6 +148,7 @@
 							<td th:text="${bundes.win}"></td>
 							<td th:text="${bundes.tie}"></td>
 							<td th:text="${bundes.defeat}"></td>
+							<td th:text="${bundes.diffscore}"></td>
 							<td><a th:href="@{/team/2223/modify(teamNum=${bundes.teamNum})}">수정</a></td>			
 						</tr>
 					</tbody>

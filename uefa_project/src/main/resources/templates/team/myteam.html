@@ -17,6 +17,13 @@
 		padding:20px;	
 		align-items:center;	
 	}
+	li{
+		display:flex;	
+	}
+	.rank{
+		font-size:x-large;
+		font-weight:900;
+	}
 	</style>
 	<body>
 		<header th:insert="header_nav.html"></header>
@@ -24,13 +31,30 @@
 			<br><br>
 			
 			<h2><img th:src="@{/img/{img}(img=${logo})}" width="100px;">[[${modify.teamName}]]</h2>
+			<label class="rank">현재 리그</label> <label  class="rank" style="font-size:xx-large; color:red;">[[${rank}]]위</label>
 			<br><br>
 			<div>
+			<hr>
 				<h3>관련 기사<h3>
+				<ul th:each="n:${news}">
+		   	 	<li>
+		   	 		<div style="padding:10px;">
+		   	 			<img th:src="@{/img/news/{img}(img=${n.mainImg})}" width="150px;">
+		   	 		</div>
+		   	 		<div style="padding:10px;">
+			   	 		<a th:href="@{/news/modify(news_num=${n.news_num})}" style="text-decoration: none; font-size:x-large;">[[${n.title}]]</a>	
+						<div style="font-size:medium;">
+							<p th:text="${n.context}" style="line-height: 19px; color:gray; width:75%; height:55px; overflow:hidden;word-wrap:break-word;"></p>
+							<label th:text="${n.source}"></label>&nbsp;&nbsp;	
+							<label th:text="${#dates.format(n.postTime,'yyyy-MM-dd HH:mm:ss')}" style=" color:gray;"></label>
+			   	 		</div>
+		   	 		</div>
+	   	 		</li>
+			</ul>
 			</div>
 			<div  class="match_list">
 			<div style="margin:auto;">
-				<h3>지난 경기 일정<h3>
+				<h3>최근 경기 결과<h3>
 				<div class="match">
 					<table  th:each="my:${myteam}" style="border:none;">
 						<tbody>

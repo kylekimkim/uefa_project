@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<title>뉴스</title>
+	</head>
+	<style>
+		.original{
+			text-decoration:none;
+			color:black;
+			padding:5px;
+			margin-left:50px;
+			border:1px solid;
+			background-color:white;
+			font-size:small;
+		}
+		.provider{
+			border:1px solid;
+			padding:5px;
+			margin:20px;
+		}
+		li{
+			display:flex;	
+		}
+		.context{
+			width:100%;
+			height:400px;
+		}
+		  .wrap textarea {
+	      width: 100%;
+	      resize: none;
+	      overflow-y: hidden; /* prevents scroll bar flash */
+	      padding: 1.1em; /* prevents text jump on Enter keypress */
+	      padding-bottom: 0.2em;
+	      line-height: 1.6;
+	    }
+	</style>
+	<body class="admin" style="color:white;">
+		<header th:insert="/header_nav.html"></header>
+		<div th:each="modify:${news}" class="container">
+			<br>
+			<br><br>
+			<form th:action="@{updateNews}" method="post" enctype="multipart/form-data">
+				<center>
+					<div id="news_num" hidden>[[${modify.news_num}]] </div>
+					<p class="input-group" hidden>  
+					  <input name="news_num" type="number" class="form-control" th:value="${modify.news_num}">
+					  <input name="mainImg" type="text" class="form-control" th:value="${modify.mainImg}">
+					</p>
+					<input name="title" type="text" class="form-control" style="width:75%" th:value="${modify.title}">
+					<br>		
+					<input name="originalLink" type="text" class="form-control" style="width:40%" th:value="${modify.originalLink}">
+					<hr><br>
+					<img th:src="@{/img/news/{img}(img=${modify.mainImg})}">
+				</center>
+					<br>
+					<label>기사 내용</label>
+					<br>
+				<div class="wrap">
+					<textarea name="context" th:text="${modify.context}"></textarea>
+				</div>
+				<br>
+				<label>연관 팀</label>
+				<p>
+					<select name="relevantTeam">
+						<option th:selected="${modify.relevantTeam}==1" value="1">맨체스터 시티</option>
+						<option th:selected="${modify.relevantTeam}==2" value="2">리버풀</option>
+						<option th:selected="${modify.relevantTeam}==3" value="3">첼시</option>
+						<option th:selected="${modify.relevantTeam}==4" value="4">토트넘</option>
+						<option th:selected="${modify.relevantTeam}==5" value="5">아스널</option>
+						<option th:selected="${modify.relevantTeam}==6" value="6">맨체스터 유나이티드</option>
+						<option th:selected="${modify.relevantTeam}==21" value="21">레알 마드리드</option>
+						<option th:selected="${modify.relevantTeam}==22" value="22">바르셀로나</option>
+						<option th:selected="${modify.relevantTeam}==41" value="41">바이에른 뮌헨</option>
+						<option th:selected="${modify.relevantTeam}==42" value="42">도르트문트</option>
+						<option th:selected="${modify.relevantTeam}==59" value="59">AC 밀란</option>
+						<option th:selected="${modify.relevantTeam}==60" value="60">인터 밀란</option>
+						<option th:selected="${modify.relevantTeam}==62" value="62">유벤투스</option>
+						<option th:selected="${modify.relevantTeam}==79" value="79">파리 생재르맹</option>				
+					</select>	
+				</p>
+				<div class="provider">
+					<b>기사제공</b><br><br>
+					<p><input name="source" type="text" class="form-control" th:value="${modify.source}"></p>
+						
+					<p><input name="reporter" type="text" class="form-control" th:value="${modify.reporter}"> 기자</p>
+					<label>Copyright ⓒ  All rights reserved. 무단 전재 및 재배포 금지.</label>
+				</div>
+				<button class="btn btn-danger" type="button" style="float:right; margin:5px;" th:onclick="deleteNews();">기사 삭제</button>
+				<button class="btn btn-primary" type="submit" style="float:right; margin:5px;">기사 수정</button>
+				<br><br>
+			</form>			
+		</div>
+	</body>
+	 <script>
+	    $(document).ready(function() {
+	      $('.wrap').on( 'keyup', 'textarea', function (e){
+	        $(this).css('height', 'auto' );
+	        $(this).height( this.scrollHeight );
+	      });
+	      $('.wrap').find( 'textarea' ).keyup();
+	    });
+	    function deleteNews(){					
+			var news_num = document.querySelector('#news_num').innerHTML;
+			var confirmAlert = confirm('정말로 삭제하시겠습니까?');				
+	 		if(confirmAlert){
+	 			$.ajax({
+	 			    url : "/news/newsDelete"
+	 			   ,type:'POST'
+	 			   ,traditional : true
+	 		       ,data : {
+	 		    	  news_num : news_num
+	 		       }
+	 		       ,success : function(jdata) {
+	
+	 		    	   if(jdata != "") {
+	 		    		  alert("해당 기사를 정상적으로 삭제되었습니다.");
+	 	 				  location.href= "/admin/news/list/1";
+	
+	 		    	   }else {
+	 		    		  alert("해당 기사 삭제를 실패헀습니다.");
+	 		    	   }
+	 		       },
+	 				error: function(jqXHR, textStatus, errorThrown) {
+	 		    	  alert("ERROR : " + textStatus + " : " + errorThrown);
+	 		       }
+	 		   })
+			}
+		}
+	</script>
+</html>
